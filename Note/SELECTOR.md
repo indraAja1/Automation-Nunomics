@@ -1,4 +1,4 @@
-## **[Selector Android](https://medium.com/@begunova/finding-mobile-elements-with-robust-appium-locator-strategies-and-selectors-1ea4a7815538)**
+# **[Selector Android](https://medium.com/@begunova/finding-mobile-elements-with-robust-appium-locator-strategies-and-selectors-1ea4a7815538)**
 Selector Android dalam Appium adalah cara untuk mengidentifikasi dan menemukan elemen UI di dalam aplikasi Android yang diuji. Selector ini digunakan oleh Appium untuk berinteraksi dengan elemen seperti tombol, teks, input, dan lainnya dalam aplikasi.
 
 ## Alat yang digunakan untuk mengidentifikasi sebagai berikut :
