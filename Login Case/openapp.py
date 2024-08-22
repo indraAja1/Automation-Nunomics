@@ -15,6 +15,11 @@ options.no_reset = False # noReset untuk memulai ulang aplikasi
 
 appium_server_url = 'http://127.0.0.1:4723/wd/hub' # Appium Server
 
+# Variable ID/checkbox/btn/XPATH
+# Di ambil dari APPIUM INSPECTOR
+btn_next = 'com.nunomics.app.debug:id/btnNext'
+btn_login = 'com.nunomics.app.debug:id/btnLogin'
+
 def open_app():
     try:
         driver = webdriver.Remote(appium_server_url, options=options)
@@ -23,12 +28,12 @@ def open_app():
         # Tunggu beberapa detik untuk memastikan home screen dimuat
         # ID pada button di ambil dari APPIUM INSPECTOR
         WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((AppiumBy.ID, 'com.nunomics.app.debug:id/btnNext'))
+            EC.element_to_be_clickable((AppiumBy.ID, btn_next))
         ).click()
         
         # Klik tombol mulai sekarang
         WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((AppiumBy.ID, 'com.nunomics.app.debug:id/btnLogin'))
+            EC.element_to_be_clickable((AppiumBy.ID, btn_login))
         ).click()
         print("Ke Halaman Masuk")
         return driver  # Kembalikan driver

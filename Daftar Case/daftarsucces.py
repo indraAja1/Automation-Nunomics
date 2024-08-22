@@ -7,7 +7,8 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# Variable ID/checkbox/btn/XPATH
+# Variable ID
+# Di ambil dari APPIUM INSPECTOR
 field_nama = 'com.nunomics.app.debug:id/etFullName'
 field_username = 'com.nunomics.app.debug:id/etUsername'
 field_email = 'com.nunomics.app.debug:id/etEmail'
@@ -26,6 +27,7 @@ input_nohp = "082137006458"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
+#
 def get_latest_sms():
     result = subprocess.run(
         ["adb", "shell", "content", "query", "--uri", "content://sms/inbox", "--projection", "body,address,date"],
@@ -34,29 +36,29 @@ def get_latest_sms():
     )
     messages = result.stdout.splitlines()
     
-    # Filter messages where address is 'AUTHMSG'
+    # Filter dari sms'AUTHMSG'
     filtered_messages = [msg for msg in messages if "AUTHMSG" in msg]
     
-    # Sort messages by date descending
+    # Urutkan pesan berdasarkan tanggal secara menurun
     sorted_messages = sorted(
         filtered_messages,
         key=lambda x: int(re.search(r'date=(\d+)', x).group(1)),
         reverse=True
     )
     
-    # Get the latest message
+    # Get pesan terbaru
     latest_message = sorted_messages[0] if sorted_messages else ""
     
     return latest_message
 
+# mencari kode otp 6 angka yang dikirim
 def parse_otp(sms_body):
     match = re.search(r'\b\d{6}\b', sms_body)
     if match:
         return match.group(0)
     return None
 
-def get_otp_with_timeout(timeout=120, poll_interval=10):
-    """
+"""
     Fungsi untuk menunggu dan mendapatkan OTP terbaru dengan waktu tunggu yang ditentukan.
 
     Args:
@@ -66,6 +68,9 @@ def get_otp_with_timeout(timeout=120, poll_interval=10):
     Returns:
         str: OTP terbaru jika ditemukan dalam batas waktu, None jika tidak ditemukan.
     """
+    
+def get_otp_with_timeout(timeout=120, poll_interval=10):
+    
     start_time = time.time()
     last_otp = None
 

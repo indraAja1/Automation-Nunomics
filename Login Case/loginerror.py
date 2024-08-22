@@ -4,12 +4,16 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# Variabel ID 
-field_email = 'com.nunomics.app.debug:id/etUsernameEmail'
+# Variable ID/XPATH
+# Variable diambil dari Appium Inspector
+field_usermail = 'com.nunomics.app.debug:id/etUsernameEmail'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 toast_message_xpath = "//android.widget.Toast[@text='Make sure the account and password are correct!']"
 
+# Variabel input
+input_usermail = "saskiaaa"
+input_pass = "Testing13"
 
 class OpenNunomics(unittest.TestCase):
     def setUp(self) -> None:
@@ -22,22 +26,22 @@ class OpenNunomics(unittest.TestCase):
         try:
             # Tunggu beberapa detik untuk memastikan halaman login dimuat
             WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_email))
+                EC.visibility_of_element_located((AppiumBy.ID, field_usermail))
             )
 
             # Input email/username/no.hp
             input_field = WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_email))
+                EC.visibility_of_element_located((AppiumBy.ID, field_usermail))
             )
             input_field.clear() # hapus email yang sudah keinput
-            input_field.send_keys("saskiaaa")
+            input_field.send_keys(input_usermail)
 
             # Input password
             input_field_password = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             input_field_password.clear()  # hapus password yang sudah keinput
-            input_field_password.send_keys("Testing13")
+            input_field_password.send_keys(input_pass)
 
             # Klik tombol login
             btn_login = WebDriverWait(self.driver, 10).until(
