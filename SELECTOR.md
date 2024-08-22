@@ -1,6 +1,10 @@
 ## **[Selector Android](https://medium.com/@begunova/finding-mobile-elements-with-robust-appium-locator-strategies-and-selectors-1ea4a7815538)**
+Selector Android dalam Appium adalah cara untuk mengidentifikasi dan menemukan elemen UI di dalam aplikasi Android yang diuji. Selector ini digunakan oleh Appium untuk berinteraksi dengan elemen seperti tombol, teks, input, dan lainnya dalam aplikasi.Alat yang digunakan untuk mengidentifikasi sebagai berikut :
 
+⬤ **Appium Inspector Apps(https://github.com/appium/appium-inspector/releases)**
+⬤ **Appium Inspector Website(https://inspector.appiumpro.com/)**
 
+Berikut adalah contoh dari Selector dan cara penggunaanya :
 1. **AppiumBy.ID**
     - **Deskripsi:** Mengidentifikasi elemen berdasarkan resource-id Android.
     - **Contoh:**
@@ -54,9 +58,7 @@
 ## Contoh Penggunaan dengan Variable
 
 ```python
-# Variable ID
-# Di ambil dari APPIUM INSPECTOR
-# Variabel selector dengan penamaan singkat
+# Variabel ID yang di ambil dari Appium Selector
 uid = (AppiumBy.ID, "com.example.app:id/username_input")
 et = (AppiumBy.CLASS_NAME, "android.widget.EditText")
 login_btn_aid = (AppiumBy.ACCESSIBILITY_ID, "login_button")
