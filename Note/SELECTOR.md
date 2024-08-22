@@ -5,7 +5,7 @@ Selector Android dalam Appium adalah cara untuk mengidentifikasi dan menemukan e
 - **[Appium Inspector Apps](https://github.com/appium/appium-inspector/releases)**
 - **[Appium Inspector Website](https://inspector.appiumpro.com/)**
 
-# Berikut adalah contoh dari Selector dan cara penggunaanya :
+### Berikut adalah contoh dari Selector dan cara penggunaanya :
 1. **AppiumBy.ID**
     - **Deskripsi:** Mengidentifikasi elemen berdasarkan resource-id Android.
     - **Contoh:**
