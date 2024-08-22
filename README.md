@@ -1,3 +1,3 @@
-# <img src="https://appium.io/docs/en/latest/assets/images/appium-logo-horiz.png" alt="Appium Logo" width="150"/> Automation Appium
+# <img src="https://brandslogos.com/wp-content/uploads/images/large/appium-logo.png" alt="Appium Logo" width="150"/> Automation Appium
 
 This project demonstrates automated testing using Appium for Android applications.
