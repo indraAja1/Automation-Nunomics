@@ -18,10 +18,11 @@ field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
 input_otp = 'com.nunomics.app.debug:id/firstPinView'
+btn_ok = 'com.nunomics.app.debug:id/btnOk'
 
 # Variable input
-nama_lengkap = "SiapaHayo"
-input_username = "Testing99"
+nama_lengkap = "SiapaHayotesting"
+input_username = "Testing19"
 input_email = "ngetesappium@gmail.com"
 input_nohp = "082137006458"
 input_password = "Testing1"
@@ -97,36 +98,36 @@ class Daftar(unittest.TestCase):
     def test_daftar(self):
         try:
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 5).until(
+            WebDriverWait(self.driver, 2).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
             ).send_keys(nama_lengkap)
             
-            WebDriverWait(self.driver, 10).until(
+            WebDriverWait(self.driver, 2).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
             
-            WebDriverWait(self.driver, 10).until(
+            WebDriverWait(self.driver, 2).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
             
-            WebDriverWait(self.driver, 10).until(
+            WebDriverWait(self.driver, 2).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
             
-            WebDriverWait(self.driver, 5).until(
+            WebDriverWait(self.driver, 2).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
             
-            WebDriverWait(self.driver, 5).until(
+            WebDriverWait(self.driver, 2).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
             
-            cb_kebijakan = WebDriverWait(self.driver, 12).until(
+            cb_kebijakan = WebDriverWait(self.driver, 5).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
             
-            daftar = WebDriverWait(self.driver, 10).until(
+            daftar = WebDriverWait(self.driver, 5).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             daftar.click()
@@ -142,6 +143,10 @@ class Daftar(unittest.TestCase):
                 print(f"OTP '{otp_code}' berhasil dimasukkan")
             else:
                 print("Gagal mendapatkan OTP dari SMS dalam batas waktu yang ditentukan")
+                
+            WebDriverWait(self.driver, 2).until(
+                EC.visibility_of_element_located((AppiumBy.ID, btn_ok))
+            ).click()
 
         except Exception as e:
             print(f"Test gagal: {e}")
