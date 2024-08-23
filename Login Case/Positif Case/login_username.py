@@ -1,18 +1,21 @@
-from open_app import open_app
 import unittest
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import sys
+# import open app
+sys.path.insert(0, r'D:\\ngetesappium\\Login Case')
+from open_app import open_app
 
 # Variable ID
 # Di ambil dari APPIUM INSPECTOR
-field_useremail = 'com.nunomics.app.debug:id/etUsernameEmail'
+field_username = 'com.nunomics.app.debug:id/etUsernameEmail'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 btn_notif_id = 'com.android.permissioncontroller:id/permission_allow_button'
 
 # Variable Input
-input_usermail = "saskiaaa"
+input_username = "dimasnur"
 input_pass = "Testing1"
 
 class OpenNunomics(unittest.TestCase):
@@ -24,13 +27,13 @@ class OpenNunomics(unittest.TestCase):
     def test_loginsucces(self):
         try:
             WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_useremail))
+                EC.visibility_of_element_located((AppiumBy.ID, field_username))
             )
             input_field = WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_useremail))
+                EC.visibility_of_element_located((AppiumBy.ID, field_username))
             )
             input_field.clear()
-            input_field.send_keys(input_usermail)
+            input_field.send_keys(input_username)
 
             input_field_password = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
@@ -42,7 +45,7 @@ class OpenNunomics(unittest.TestCase):
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
             btn_login.click()
-            
+            #Perizinan no
             WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((AppiumBy.ID, btn_notif_id))
             )

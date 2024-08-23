@@ -20,7 +20,7 @@ toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id
 nama_lengkap = "Hayosiapa"
 input_username = "Testinf9"
 input_email = "ngetesappiu2m@gmail.com"
-input_nohp = "082137086458"
+input_nohp = "0821370dsd458"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 otp_code = '381039'

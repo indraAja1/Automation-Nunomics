@@ -1,19 +1,22 @@
-from open_app import open_app  # Impor dari openapp.py
 import unittest
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import sys
+# import open app
+sys.path.insert(0, r'D:\\ngetesappium\\Login Case')
+from open_app import open_app
 
 # Variable ID/XPATH
 # Variable diambil dari Appium Inspector
-field_usermail = 'com.nunomics.app.debug:id/etUsernameEmail'
+field_username = 'com.nunomics.app.debug:id/etUsernameEmail'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 toast_message_xpath = "//android.widget.Toast[@text='Your account has been blocked, please check your email!']"
 
 # Variable Input
-input_usermail = "saskiaaa"
-input_pass = "Testing13"
+input_username = "dimasnur"
+input_pass = "Testing1"
 
 class OpenNunomics(unittest.TestCase):
     def setUp(self) -> None:
@@ -26,15 +29,15 @@ class OpenNunomics(unittest.TestCase):
         try:
             # Tunggu beberapa detik untuk memastikan halaman login dimuat
             WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_usermail))
+                EC.visibility_of_element_located((AppiumBy.ID, field_username))
             )
 
             # Input email/username/no.hp
             input_field = WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_usermail))
+                EC.visibility_of_element_located((AppiumBy.ID, field_username))
             )
             input_field.clear()  # hapus email yang sudah keinput
-            input_field.send_keys(input_usermail)
+            input_field.send_keys(input_username)
 
             # Input password
             input_field_password = WebDriverWait(self.driver, 5).until(
