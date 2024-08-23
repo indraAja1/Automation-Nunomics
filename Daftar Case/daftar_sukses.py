@@ -66,10 +66,10 @@ class Daftar(unittest.TestCase):
             )
             cb_kebijakan.click()
             
-            daftar = WebDriverWait(self.driver, 2).until(
+            btn_daf = WebDriverWait(self.driver, 2).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
-            daftar.click()
+            btn_daf.click()
 
             # Tunggu OTP dengan batas waktu yang ditentukan
             print("Menunggu OTP...")
@@ -82,13 +82,14 @@ class Daftar(unittest.TestCase):
                 print(f"OTP '{otp_code}' berhasil dimasukkan")
             else:
                 print("Gagal mendapatkan OTP dari SMS dalam batas waktu yang ditentukan")
-                
-            WebDriverWait(self.driver, 5).until(
+                 
+            oke = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, btn_ok))
-            ).click()
+            )
+            oke.click()
 
         except Exception as e:
             print(f"Test gagal: {e}")
-          
+
 if __name__ == "__main__":
     unittest.main()
