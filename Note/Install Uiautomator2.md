@@ -1,4 +1,4 @@
-# ** Instalasi UiAutomator2 secara Otomatis dengan Appium**
+# **Instalasi UiAutomator2 secara Otomatis dengan Appium**
 
 1. **Pastikan Appium Terinstal**:
     - Pastikan Anda sudah menginstal Appium di sistem Anda. Jika belum, Anda dapat menginstalnya menggunakan npm:
