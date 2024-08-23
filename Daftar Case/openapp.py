@@ -44,5 +44,6 @@ def open_app():
         print(f"Terjadi kesalahan saat inisialisasi: {e}")
         return None
     
+    
 if __name__ == "__main__":
     open_app()
