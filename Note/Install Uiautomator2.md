@@ -32,7 +32,7 @@
     - Mulai sesi Appium dengan desired capabilities yang sudah disiapkan. Appium akan secara otomatis menginstal server UiAutomator2 di perangkat atau emulator jika belum terinstal.
 
 
-# ** Instalasi UiAutomator2 secara Manual dengan Appium**
+# **Instalasi UiAutomator2 secara Manual dengan Appium**
 
 ### Langkah-langkah Instalasi UiAutomator2 secara Manual
 
