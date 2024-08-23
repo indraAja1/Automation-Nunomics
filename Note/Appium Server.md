@@ -47,7 +47,10 @@ Ini akan memulai Appium server pada port default (`4723`). Jika Anda ingin menja
 appium server -p 4723 -a 127.0.0.1 -pa /wd/hub --allow-cors
 ```
 
-Ini akan menjalankan server Appium di port `4725,` host `127.0.0.1` , remote path `/wd/hub`
+- **`p 4723`**: Mengatur port server Appium ke 4723.
+- **`a 127.0.0.1`**: Mengatur alamat IP server ke `127.0.0.1` (localhost).
+- **`pa /wd/hub`**: Mengatur path dasar (base path) ke `/wd/hub`.
+- **`-allow-cors`**: Mengaktifkan CORS untuk memungkinkan permintaan dari domain yang berbeda`
 
 4. **Verifikasi Instalasi**
 
@@ -58,3 +61,29 @@ appium -v
 ```
 
 Ini akan menampilkan versi Appium yang terinstal.
+
+
+### Note adb :
+
+1. **Cara mencari AppPackage & MainActivity***
+
+```shell
+adb shell dumpsys window | find "mCurrentFocus"
+```
+
+2. **Cara Check semua sms & sms terbaru**
+```shell
+adb shell content query --uri content://sms/inbox --projection body,address,date
+```
+
+3. **Cara mencari OTP terbaru dari SMS AUTHMSG**
+
+```shell
+$messages = adb shell content query --uri content://sms/inbox --projection body,address,date
+$filtered = $messages | Where-Object { $_ -match "AUTHMSG" }
+$sorted = $filtered | Sort-Object { [long]($_ -replace ".*date=(\d+)", '$1') } -Descending
+$latest = $sorted | Select-Object -First 1
+$otp = [regex]::Match($latest, "\d{6}").Value
+$otp
+
+```
