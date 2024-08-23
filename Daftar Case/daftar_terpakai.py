@@ -1,13 +1,8 @@
-import time
 import unittest
-from openapp import open_app
+from open_app import open_app
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-import sys
-sys.path.insert(0, r'D:\\ngetesappium\\Get otp')
-from otp_handler import get_otp_with_timeout
 
 # Variable ID
 field_nama = 'com.nunomics.app.debug:id/etFullName'
@@ -18,8 +13,7 @@ field_pass = 'com.nunomics.app.debug:id/etPassword'
 field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
-input_otp = 'com.nunomics.app.debug:id/firstPinView'
-btn_ok = 'com.nunomics.app.debug:id/btnOk'
+toast_error = '//android.widget.Toast[@text="Data user has been added!"]'  # Misalnya, pesan error jika user sudah ada
 
 # Variable input
 nama_lengkap = "SiapaHayotesting"
@@ -29,13 +23,13 @@ input_nohp = "082137006458"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
-class Daftar(unittest.TestCase):
+class TestDaftarNegative(unittest.TestCase):
     def setUp(self) -> None:
-        self.driver = open_app()  # Pastikan open_app() mengembalikan driver
+        self.driver = open_app()
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_daftar(self):
+    def test_daftar_dengan_data_sudah_digunakan(self):
         try:
             # Isi formulir pendaftaran
             WebDriverWait(self.driver, 1).until(
@@ -71,23 +65,19 @@ class Daftar(unittest.TestCase):
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             daftar.click()
-
-            # Tunggu OTP dengan batas waktu yang ditentukan
-            print("Menunggu OTP...")
-            otp_code = get_otp_with_timeout(timeout=120, poll_interval=10)
-            if otp_code:
-                otp_field = WebDriverWait(self.driver, 10).until(
-                    EC.visibility_of_element_located((AppiumBy.ID, input_otp))
+            
+            try:
+                error_message = WebDriverWait(self.driver, 4).until(
+                    EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
                 )
-                otp_field.send_keys(otp_code)
-                print(f"OTP '{otp_code}' berhasil dimasukkan")
-            else:
-                print("Gagal mendapatkan OTP dari SMS dalam batas waktu yang ditentukan")
-                
-            WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located((AppiumBy.ID, btn_ok))
-            ).click()
-
+                if error_message:
+                    print("Negative Test Case sukses: Pesan error muncul dengan benar (Data user has been added!).")
+                else:
+                    print("Negative Test Case gagal: Pesan error tidak muncul.")
+                    
+            except Exception as e:
+                print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
+                print(f"Terjadi kesalahan: {e}")          
         except Exception as e:
             print(f"Test gagal: {e}")
           

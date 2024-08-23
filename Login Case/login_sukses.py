@@ -1,4 +1,4 @@
-from openapp import open_app
+from open_app import open_app
 import unittest
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
