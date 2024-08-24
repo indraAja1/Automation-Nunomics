@@ -51,7 +51,7 @@ class OpenNunomics(unittest.TestCase):
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
             btn_login.click()
-            
+            print("Login dengan akun yang sudah terhapus")
             # Verifikasi pesan error
             try:
                 error_message = WebDriverWait(self.driver, 4).until(

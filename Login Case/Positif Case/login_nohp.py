@@ -53,7 +53,7 @@ class OpenNunomics(unittest.TestCase):
                 EC.element_to_be_clickable((AppiumBy.ID, btn_notif_id))
             )
             btn_notif.click()
-            print("Sukses Login")
+            print("Sukses Login berhasil menggunakan No Handphone")
 
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")

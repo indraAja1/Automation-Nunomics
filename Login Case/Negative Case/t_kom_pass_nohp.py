@@ -51,6 +51,7 @@ class OpenNunomics(unittest.TestCase):
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
             btn_login.click()
+            print("Nomor handphone salah, tetapi password benar.")
             
             # Verifikasi pesan error
             try:

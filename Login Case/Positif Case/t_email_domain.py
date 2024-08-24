@@ -15,7 +15,7 @@ btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 btn_notif_id = 'com.android.permissioncontroller:id/permission_allow_button'
 
 # Variable Input
-input_email = "usertesting1satu@gmail.com"
+input_email = "usertesting1satu@gmail.com" # Ganti email dengan yahoo (Belum ada usernya)
 input_pass = "Testing1"
 
 class OpenNunomics(unittest.TestCase):
@@ -53,7 +53,7 @@ class OpenNunomics(unittest.TestCase):
                 EC.element_to_be_clickable((AppiumBy.ID, btn_notif_id))
             )
             btn_notif.click()
-            print("Sukses Login berhasil menggunakan Email")
+            print("Sukses Login berhasil menggunakan Email domain umum (Yahoo.com)")
 
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
