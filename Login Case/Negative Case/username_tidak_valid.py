@@ -10,12 +10,12 @@ from open_app import open_app
 
 # Variable ID/XPATH
 # Variable diambil dari Appium Inspector
-field_usermailnohp = 'com.nunomics.app.debug:id/etUsernameEmail'
+field_nohp = 'com.nunomics.app.debug:id/etUsernameEmail'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 
 # Variabel input
-input_usermailnohp = ""
+input_nohp = "089505027088"
 input_pass = ""
 
 class OpenNunomics(unittest.TestCase):
@@ -29,15 +29,15 @@ class OpenNunomics(unittest.TestCase):
         try:
             # Tunggu beberapa detik untuk memastikan halaman login dimuat
             WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_usermailnohp))
+                EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             )
 
             # Input email/username/no.hp
             input_field = WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_usermailnohp))
+                EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             )
             input_field.clear()  # Hapus email yang sudah diinput
-            input_field.send_keys(input_usermailnohp)
+            input_field.send_keys(input_nohp)
 
             # Input password
             input_field_password = WebDriverWait(self.driver, 5).until(
@@ -56,12 +56,7 @@ class OpenNunomics(unittest.TestCase):
                 print("Button aktif")
                 button.click()  # Klik tombol login jika aktif
             else:
-                print("Button tidak aktif Karena :")
-            if not input_usermailnohp:
-                    print("- Field username/email/no.hp kosong.")
-            if not input_pass:
-                    print("- Field password kosong.")
-                    
+                print("Button tidak aktif")
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
 

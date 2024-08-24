@@ -3,8 +3,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
-
-# Impor open_app dari path yang ditentukan
+# import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Login Case')
 from open_app import open_app
 
@@ -13,10 +12,11 @@ from open_app import open_app
 field_nohp = 'com.nunomics.app.debug:id/etUsernameEmail'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 btn_login_id = 'com.nunomics.app.debug:id/btnApply'
+toast_message_xpath = "//android.widget.Toast[@text='Make sure the account and password are correct!']" #Liat XPATH
 
 # Variabel input
-input_nohp = "089505027088"
-input_pass = ""
+input_nohp = "089505027088" #Nomor telepon benar, tetapi password salah
+input_pass = "Pass Fail" #Nomor telepon benar, tetapi password salah
 
 class OpenNunomics(unittest.TestCase):
     def setUp(self) -> None:
@@ -36,32 +36,35 @@ class OpenNunomics(unittest.TestCase):
             input_field = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             )
-            input_field.clear()  # Hapus email yang sudah diinput
+            input_field.clear() # hapus email yang sudah keinput
             input_field.send_keys(input_nohp)
 
             # Input password
             input_field_password = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
-            input_field_password.clear()  # Hapus password yang sudah diinput
+            input_field_password.clear()  # hapus password yang sudah keinput
             input_field_password.send_keys(input_pass)
 
-            # Temukan tombol login
-            button = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ID, btn_login_id))
+            # Klik tombol login
+            btn_login = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
+            btn_login.click()
+            
+            # Verifikasi pesan error
+            try:
+                error_message = WebDriverWait(self.driver, 4).until(
+                    EC.presence_of_element_located((AppiumBy.XPATH, toast_message_xpath))
+                )
+                if error_message:
+                    print("Negative Test Case sukses: Pesan error muncul dengan benar (Make sure the account and password are correct!)",)
+                else:
+                    print("Negative Test Case gagal: Pesan error tidak muncul.")
+            except Exception as e:
+                print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
+                print(f"Terjadi kesalahan: {e}")
 
-            # Cek apakah button aktif (enabled)
-            if button.is_enabled():
-                print("Button aktif")
-                button.click()  # Klik tombol login jika aktif
-            else:
-                print("Button tidak aktif Karena :",)
-            if not input_nohp:
-                    print("- Field username/email/no.hp kosong.")
-            if not input_pass:
-                    print("- Field password kosong.")
-                    
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
 
