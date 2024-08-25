@@ -1,82 +1,83 @@
 # **Appium Desktop / Install Appium Server Node.js**
 
-**Note:** Anda juga bisa menggunakan **[Appium Desktop](https://github.com/appium/appium-desktop)**.
+**Note:** Note: You can also use **[Appium Desktop](https://github.com/appium/appium-desktop)**.
 
-**Appium Desktop** adalah aplikasi untuk Mac, Windows, dan Linux yang menyediakan antarmuka grafis untuk Server Appium. Dengan Appium Desktop, Anda dapat:
+**Appium Desktop** Appium Desktop is an application for Mac, Windows, and Linux that provides a graphical interface for the Appium Server. With Appium Desktop, you can:
 
-- **Mengatur opsi server** - Konfigurasi mudah melalui UI.
-- **Mengelola server** - Memulai atau menghentikan server dengan klik tombol.
-- **Melihat log** - Pantau log secara real-time.
+- **Configure server options** - Easily configure through the UI.
+- **Manage the server** - Start or stop the server with a click of a button.
+- **View logs** - Monitor logs in real-time.
 
-Tidak perlu Node.js atau NPM karena Appium Desktop sudah mencakup runtime Node.js.
+No need for Node.js or NPM because Appium Desktop includes a Node.js runtime.
 
 **Appium Server Node.js**
 
-- **Appium Server** -  Mengatur dan menjalankan pengujian otomatis untuk aplikasi Android dan iOS.
-- **Node.js** - Runtime JavaScript yang diperlukan untuk menjalankan Appium Server.
-- **NPM** - Alat untuk menginstal Appium Server di Node.js.
+- **Appium Server** - Set up and run automated tests for Android and iOS applications.
+- **Node.js** - The JavaScript runtime required to run the Appium Server.
+- **NPM** - A tool to install the Appium Server in Node.js.
 
-### Berikut install Appium menggunakan node.js 
+### Here’s how to install Appium using Node.js
+
 1. **Instal Node.js**
 
-Appium membutuhkan Node.js untuk berjalan. Jika Node.js belum terinstal di sistem Anda, Anda dapat mengunduh dan menginstalnya dari **[situs resmi Node.js](https://nodejs.org/)**. Pilih versi LTS (Long Term Support) untuk stabilitas yang lebih baik.
+Appium requires Node.js to run. If Node.js is not installed on your system, you can download and install it from the official **[Node.js](https://nodejs.org/)** website. Choose the LTS (Long Term Support) version for better stability.
 
-2. **Instal Appium Server melalui npm**
+2. **Install Appium Server via npm**
 
-Setelah Node.js terinstal, Anda dapat menginstal Appium server menggunakan npm (Node Package Manager), yang merupakan bagian dari instalasi Node.js.
+Once Node.js is installed, you can install the Appium server using npm (Node Package Manager), which is part of the Node.js installation.
 
-Buka terminal atau command prompt, dan jalankan perintah berikut:
+Open a terminal or command prompt, and run the following command:
 
 ```bash
 npm install -g appium
 ```
 
-Perintah di atas akan menginstal Appium secara global di sistem Anda, sehingga Anda dapat menjalankannya dari mana saja.
+The above command will install Appium globally on your system, so you can run it from anywhere.
 
-3. **Jalankan Appium Server**
+3. **Start the appium server**
 
-Setelah instalasi selesai, Anda bisa menjalankan Appium server dengan perintah berikut:
+After installation is complete, you can start the Appium server with the following command:
 
 ```bash
 appium
 ```
 
-Ini akan memulai Appium server pada port default (`4723`). Jika Anda ingin menjalankannya di port yang berbeda atau menyesuaikan konfigurasi lainnya, Anda dapat menggunakan flag tambahan seperti berikut:
+This will start the Appium server on the default port (`4723`). If you want to run it on a different port or customize other configurations, you can use additional flags like this:
 
 ```bash
 appium server -p 4723 -a 127.0.0.1 -pa /wd/hub --allow-cors
 ```
 
-- **`p 4723`**: Mengatur port server Appium ke 4723.
-- **`a 127.0.0.1`**: Mengatur alamat IP server ke `127.0.0.1` (localhost).
-- **`pa /wd/hub`**: Mengatur path dasar (base path) ke `/wd/hub`.
-- **`-allow-cors`**: Mengaktifkan CORS untuk memungkinkan permintaan dari domain yang berbeda`
+- **`p 4723`**: Sets the Appium server port to `4723`.
+- **`a 127.0.0.1`**: Sets the server IP address to `127.0.0.1` (localhost).
+- **`pa /wd/hub`**: Sets the base path to `/wd/hub`.
+- **`-allow-cors`**: Enables CORS to allow requests from different domains.
 
-4. **Verifikasi Instalasi**
+4. **Verify Installation**
 
-Untuk memastikan bahwa Appium telah terinstal dengan benar, Anda dapat menjalankan:
+To ensure that Appium has been installed correctly, you can run:
 
 ```bash
 appium -v
 ```
 
-Ini akan menampilkan versi Appium yang terinstal.
+This will display the installed version of Appium.
 
+### Note on adb :
 
-### Note adb :
-
-1. **Cara mencari AppPackage & MainActivity***
+1. **How to find AppPackage & MainActivity**
 
 ```shell
 adb shell dumpsys window | find "mCurrentFocus"
 ```
 
-2. **Cara Check semua sms & sms terbaru**
+2. **How to check all SMS & the latest SMS**
+
 ```shell
 adb shell content query --uri content://sms/inbox --projection body,address,date
 ```
 
-3. **Cara mencari OTP terbaru dari SMS AUTHMSG**
+3. **How to find the latest OTP from SMS AUTHMSG**
 
 ```shell
 $messages = adb shell content query --uri content://sms/inbox --projection body,address,date
