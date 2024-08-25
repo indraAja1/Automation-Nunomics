@@ -1,65 +1,65 @@
-# **[Selector Android](https://medium.com/@begunova/finding-mobile-elements-with-robust-appium-locator-strategies-and-selectors-1ea4a7815538)**
-Selector Android dalam Appium adalah cara untuk mengidentifikasi dan menemukan elemen UI di dalam aplikasi Android yang diuji. Selector ini digunakan oleh Appium untuk berinteraksi dengan elemen seperti tombol, teks, input, dan lainnya dalam aplikasi.
+# **[Android Selectors](https://medium.com/@begunova/finding-mobile-elements-with-robust-appium-locator-strategies-and-selectors-1ea4a7815538)**
+Android Selectors in Appium are methods used to identify and locate UI elements within an Android application under test. These selectors allow Appium to interact with elements such as buttons, text, input fields, and more within the app.
 
-## Alat yang digunakan untuk mengidentifikasi sebagai berikut :
+## Tools for Identifying Elements:
 - **[Appium Inspector Apps](https://github.com/appium/appium-inspector/releases)**
 - **[Appium Inspector Website](https://inspector.appiumpro.com/)**
 
-### Berikut adalah contoh dari Selector dan cara penggunaanya :
+### Below are examples of Selectors and how to use them:
 1. **AppiumBy.ID**
-    - **Deskripsi:** Mengidentifikasi elemen berdasarkan resource-id Android.
-    - **Contoh:**
+    - **Description:** Identifies an element based on the Android resource-id.
+    - **Example:**
       ```python
       (AppiumBy.ID, "com.example.app:id/username_input")
       ```
 
 2. **AppiumBy.CLASS_NAME**
-    - **Deskripsi:** Mengidentifikasi elemen berdasarkan nama kelas Android.
-    - **Contoh:**
+    - **Description:** Identifies an element based on the Android class name.
+    - **Example:**
       ```python
       (AppiumBy.CLASS_NAME, "android.widget.EditText")
       ```
 
 3. **AppiumBy.ACCESSIBILITY_ID**
-    - **Deskripsi:** Mengidentifikasi elemen berdasarkan content-description Android.
-    - **Contoh:**
+    - **Description:** Identifies an element based on the Android content-description.
+    - **Example:**
       ```python
       (AppiumBy.ACCESSIBILITY_ID, "login_button")
       ```
 
 4. **AppiumBy.ANDROID_UIAUTOMATOR**
-    - **Deskripsi:** Menggunakan UiAutomator string untuk mengidentifikasi elemen.
-    - **Contoh:**
+    - **Description:** Uses a UiAutomator string to identify an element.
+    - **Example:**
       ```python
       (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Login")')
       (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.example.app:id/login_button")')
       ```
 
 5. **AppiumBy.XPATH**
-    - **Deskripsi:** Menggunakan XPath untuk mengidentifikasi elemen.
-    - **Contoh:**
+    - **Description:** Uses XPath to identify an element.
+    - **Example:**
       ```python
       (AppiumBy.XPATH, "//android.widget.Button[@text='Login']")
       ```
 
 6. **AppiumBy.NAME**
-    - **Deskripsi:** Mengidentifikasi elemen berdasarkan atribut "name" (biasanya sama dengan teks yang ditampilkan).
-    - **Contoh:**
+    - **Description:** Identifies an element based on the "name" attribute (usually the displayed text).
+    - **Example:**
       ```python
       (AppiumBy.NAME, "Login")
       ```
 
 7. **AppiumBy.TAG_NAME**
-    - **Deskripsi:** Mengidentifikasi elemen berdasarkan jenis widget Android.
-    - **Contoh:**
+    - **Description:** Identifies an element based on the Android widget type.
+    - **Example:**
       ```python
       (AppiumBy.TAG_NAME, "android.widget.Button")
       ```
 
-## Contoh Penggunaan dengan Variable
+## Example Usage with Variables
 
 ```python
-# Variabel ID yang di ambil dari Appium Selector
+# Variable IDs taken from Appium Selector
 uid = (AppiumBy.ID, "com.example.app:id/username_input")
 et = (AppiumBy.CLASS_NAME, "android.widget.EditText")
 login_btn_aid = (AppiumBy.ACCESSIBILITY_ID, "login_button")
@@ -69,53 +69,52 @@ login_xpath = (AppiumBy.XPATH, "//android.widget.Button[@text='Login']")
 login_name = (AppiumBy.NAME, "Login")
 btn_tag = (AppiumBy.TAG_NAME, "android.widget.Button")
 
-# Penggunaan variabel singkat dengan WebDriverWait
+# Example usage of the shortened variables with WebDriverWait
 
-# Menunggu dan menemukan elemen menggunakan ID
+# Wait for and find the element using ID
 username = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located(uid)
 )
 username.send_keys("your_username")
 
-# Menunggu dan menemukan elemen menggunakan CLASS_NAME
+# Wait for and find the element using CLASS_NAME
 edit_text = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located(et)
 )
 
-# Menunggu dan menemukan elemen menggunakan ACCESSIBILITY_ID
+# Wait for and find the element using ACCESSIBILITY_ID
 login_btn = WebDriverWait(driver, 10).until(
     EC.element_to_be_clickable(login_btn_aid)
 )
 login_btn.click()
 
-# Menunggu dan menemukan elemen menggunakan ANDROID_UIAUTOMATOR (berdasarkan teks)
+# Wait for and find the element using ANDROID_UIAUTOMATOR (based on text)
 login_txt_btn = WebDriverWait(driver, 10).until(
     EC.element_to_be_clickable(login_txt)
 )
 login_txt_btn.click()
 
-# Menunggu dan menemukan elemen menggunakan ANDROID_UIAUTOMATOR (berdasarkan resource ID)
+# Wait for and find the element using ANDROID_UIAUTOMATOR (based on resource ID)
 login_resid_btn = WebDriverWait(driver, 10).until(
     EC.element_to_be_clickable(login_resid)
 )
 login_resid_btn.click()
 
-# Menunggu dan menemukan elemen menggunakan XPath
+# Wait for and find the element using XPath
 login_xpath_btn = WebDriverWait(driver, 10).until(
     EC.element_to_be_clickable(login_xpath)
 )
 login_xpath_btn.click()
 
-# Menunggu dan menemukan elemen menggunakan NAME
+# Wait for and find the element using NAME
 login_name_btn = WebDriverWait(driver, 10).until(
     EC.element_to_be_clickable(login_name)
 )
 login_name_btn.click()
 
-# Menunggu dan menemukan elemen menggunakan TAG_NAME
+# Wait for and find the element using TAG_NAME
 btn = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located(btn_tag)
 )
 btn.click()
 
-```

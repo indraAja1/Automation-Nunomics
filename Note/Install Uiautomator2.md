@@ -1,22 +1,21 @@
-# **Instalasi UiAutomator2 secara Otomatis dengan Appium**
+# **Automatic Installation of UiAutomator2 with Appium**
 
-1. **Pastikan Appium Terinstal**:
-    - Pastikan Anda sudah menginstal Appium di sistem Anda. Jika belum, Anda dapat menginstalnya menggunakan npm:
+1. **Ensure Appium is Installed**:
+    - Make sure you have Appium installed on your system. If not, you can install it using npm:
         
-        ```
+        ```bash
         npm install -g appium
-        
         ```
         
-2. **Jalankan Appium Server**:
-    - Jalankan Appium server dari Command Prompt atau Terminal:
+2. **Start the Appium Server**:
+    - Start the Appium server from Command Prompt or Terminal:
         
-        ```
+        ```bash
         appium
-        
         ```
-3. **Siapkan Desired Capabilities**:
-    - Buat desired capabilities untuk mengonfigurasi sesi Appium dengan `UiAutomator2`. Berikut adalah contoh desired capabilities:
+        
+3. **Set Up Desired Capabilities**:
+    - Create desired capabilities to configure the Appium session with `UiAutomator2`. Here is an example of the desired capabilities:
         
         ```json
         {
@@ -25,35 +24,33 @@
           "automationName": "UiAutomator2",
           "app": "path/to/your/app.apk"
         }
-        
         ```
         
-4. **Mulai Sesi Appium**:
-    - Mulai sesi Appium dengan desired capabilities yang sudah disiapkan. Appium akan secara otomatis menginstal server UiAutomator2 di perangkat atau emulator jika belum terinstal.
+4. **Start the Appium Session**:
+    - Start the Appium session with the desired capabilities you have set up. Appium will automatically install the UiAutomator2 server on the device or emulator if it is not already installed.
 
+# **Manual Installation of UiAutomator2 with Appium**
 
-# **Instalasi UiAutomator2 secara Manual dengan Appium**
+### Steps for Manual Installation of UiAutomator2
 
-### Langkah-langkah Instalasi UiAutomator2 secara Manual
-
-1. **Unduh File APK UiAutomator2**:
-    - Unduh file APK untuk UiAutomator2 server dan test server dari repositori GitHub Appium:
+1. **Download the UiAutomator2 APK Files**:
+    - Download the APK files for the UiAutomator2 server and test server from the Appium GitHub repository:
         - [UiAutomator2 Server APK](https://github.com/appium/appium-uiautomator2-server/releases)
         - [UiAutomator2 Server Test APK](https://github.com/appium/appium-uiautomator2-server/releases)
-2. **Instal APK di Perangkat atau Emulator**:
-    - Instal APK menggunakan ADB. Jalankan perintah berikut untuk masing-masing APK:
         
-        ```
+2. **Install the APKs on the Device or Emulator**:
+    - Install the APKs using ADB. Run the following commands for each APK:
+        
+        ```bash
         adb install path/to/appium-uiautomator2-server-debug-androidTest.apk
         adb install path/to/appium-uiautomator2-server-vX.X.X.apk
-        
         ```
         
-    - Gantilah `path/to/` dengan path yang sesuai ke file APK yang telah diunduh.
+    - Replace `path/to/` with the appropriate path to the APK files you have downloaded.
 
-### Contoh Lengkap Menggunakan Desired Capabilities
+### Complete Example Using Desired Capabilities
 
-Berikut adalah contoh lengkap konfigurasi desired capabilities yang digunakan untuk memulai sesi Appium dengan UiAutomator2:
+Here is a complete example of the desired capabilities configuration used to start an Appium session with UiAutomator2:
 
 ```json
 {
@@ -62,15 +59,12 @@ Berikut adalah contoh lengkap konfigurasi desired capabilities yang digunakan un
   "automationName": "UiAutomator2",
   "app": "path/to/your/app.apk"
 }
-
 ```
 
-### Verifikasi Instalasi
+### Verify Installation
+After starting the Appium session, you can verify that the UiAutomator2 server is installed and running correctly by checking the Appium log. You should see something like this in the log:
 
-Setelah memulai sesi Appium, Anda dapat memverifikasi apakah server UiAutomator2 terinstal dan berjalan dengan benar dengan memeriksa log Appium. Anda harus melihat sesuatu seperti ini di log:
-
-```
+```shell
 Installing 'io.appium.uiautomator2.server' and 'io.appium.uiautomator2.server.test'
 Starting UiAutomator2 server
-
 ```
