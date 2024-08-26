@@ -12,10 +12,10 @@ from open_app import open_app
 field_nohp = 'com.nunomics.app.debug:id/etUsernameEmail'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 btn_login_id = 'com.nunomics.app.debug:id/btnApply'
-toast_message_xpath = "//android.widget.Toast[@text='Make sure the account and password are correct!']" #Liat XPATH
+toast_message_xpath = "//android.widget.Toast[@text='Terjadi kesalahan']" 
 
 # Variabel input
-input_nohp = "089#0testing" 
+input_nohp = "089505027088371" #Nomor handphone > 14
 input_pass = "Testing1" 
 
 class OpenNunomics(unittest.TestCase):
@@ -51,14 +51,15 @@ class OpenNunomics(unittest.TestCase):
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
             btn_login.click()
-            print("Login dengan No telepon yang mengandung karakter non-numerik (contoh: huruf atau simbol)")
+            print("Login dengan no telp > 14 number")
+            
             # Verifikasi pesan error
             try:
                 error_message = WebDriverWait(self.driver, 4).until(
                     EC.presence_of_element_located((AppiumBy.XPATH, toast_message_xpath))
                 )
                 if error_message:
-                    print("Negative Test Case sukses: Pesan error muncul dengan benar (Make sure the account and password are correct!)",)
+                    print("Negative Test Case sukses: Pesan error muncul dengan benar (Terjadi Kesalahan)",)
                 else:
                     print("Negative Test Case gagal: Pesan error tidak muncul.")
             except Exception as e:
