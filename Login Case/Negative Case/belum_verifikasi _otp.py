@@ -1,8 +1,11 @@
 import unittest
-from open_app import open_app
+import sys
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+sys.path.insert(0, r'D:\\ngetesappium\\Daftar Case') #Ambil Open App dari Daftar Case -> halaman daftar
+from open_app import open_app
 
 # Variable ID
 field_nama = 'com.nunomics.app.debug:id/etFullName'
@@ -13,17 +16,21 @@ field_pass = 'com.nunomics.app.debug:id/etPassword'
 field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
-input_otp = 'com.nunomics.app.debug:id/firstPinView'
-toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/message"]'
+XPATH_back = '//android.widget.LinearLayout[@resource-id="com.nunomics.app.debug:id/ivBack"]'
+btn_login = 'com.nunomics.app.debug:id/btnLogin'
+field_user_login = 'com.nunomics.app.debug:id/etUsernameEmail'
+btn_login_id = 'com.nunomics.app.debug:id/btnApply'
+toast_message_xpath = '//android.widget.Toast[@text="User not registered yet!"]'
+toast_message_back = '//android.widget.Toast[@text="Anda tidak akan bisa kembali ke halaman OTP lagi jika keluar, tekan tombol kembali sekali lagi untuk keluar"]'
+
 
 # Variable input
 nama_lengkap = "Hayosiapa"
-input_username = "Testinf9"
+input_username = "Testing9"
 input_email = "ngetesappiu2m@gmail.com"
-input_nohp = "082137006458"
+input_nohp = "082137006443"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
-otp_code = '381039'
 
 class Daftar(unittest.TestCase):
     def setUp(self) -> None:
@@ -67,27 +74,66 @@ class Daftar(unittest.TestCase):
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             btn_daf.click()
-            
-            otp_field = WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.ID, input_otp))
+            #Back
+            max_retries = 2
+            for _ in range(max_retries):
+                back = WebDriverWait(self.driver, 14).until(
+                    EC.element_to_be_clickable((AppiumBy.XPATH, XPATH_back))
+                )
+                back.click()
+            try:
+                error_message_back = WebDriverWait(self.driver, 4).until(
+                    EC.presence_of_element_located((AppiumBy.XPATH, toast_message_back))
+                )
+                if error_message_back:
+                    print("Pesan peringatan Keluar dengan benar : (Anda tidak akan bisa kembali ke halaman OTP lagi jika keluar, tekan tombol kembali sekali lagi untuk keluar) ")
+                else:
+                    print("Pesan peringatan Keluar gagal: Pesan error tidak muncul.")
+                    
+            except Exception as e:
+                    print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
+                    print(f"Terjadi kesalahan: {e}")
+
+            # Login Case Negative 
+            login_btn = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((AppiumBy.ID, btn_login))
             )
-            otp_field.send_keys(otp_code)
-            print(f"OTP '{otp_code}' berhasil dimasukkan")
+            print("Kembali ke halaman Welcome -> Login")   
+            login_btn.click()
             
+            username_login = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((AppiumBy.ID, field_user_login))
+            )
+            username_login.clear()
+            username_login.send_keys(input_username)
+            
+            password_login = WebDriverWait(self.driver, 2).until(
+                EC.visibility_of_element_located((AppiumBy.ID, field_pass))
+            )
+            password_login.clear()
+            password_login.send_keys(input_password)
+            
+            WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
+            ).click()
+            
+        # Verifikasi pesan error
             try:
                 error_message = WebDriverWait(self.driver, 4).until(
-                    EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
+                    EC.presence_of_element_located((AppiumBy.XPATH, toast_message_xpath))
                 )
                 if error_message:
-                    print("Negative Test Case sukses: Pesan error muncul dengan benar (Verif OTP Failed!).")
+                    print("Negative Test Case sukses: Pesan error muncul (User not registered yet!)) Karena user tidak menginput OTP",)
                 else:
                     print("Negative Test Case gagal: Pesan error tidak muncul.")
-                    
             except Exception as e:
                 print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
                 print(f"Terjadi kesalahan: {e}")
+
+                
         except Exception as e:
             print(f"Test gagal: {e}")
 
 if __name__ == "__main__":
+    
     unittest.main()
