@@ -9,14 +9,14 @@ from open_app import open_app
 
 # Variable ID/XPATH
 # Variable diambil dari Appium Inspector
-field_email = 'com.nunomics.app.debug:id/etUsernameEmail'
+field_username = 'com.nunomics.app.debug:id/etUsernameEmail'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 btn_login_id = 'com.nunomics.app.debug:id/btnApply'
-toast_message_xpath = "//android.widget.Toast[@text='Make sure the account and password are correct!']" #Liat XPATH
+toast_message_xpath = "//android.widget.Toast[@text='User not registered yet!']"
 
 # Variabel input
-input_email = "usertesting1s atu@gmail.com" 
-input_pass = "Testing1" 
+input_username = "Testing2"
+input_pass = "Testing1"
 
 class OpenNunomics(unittest.TestCase):
     def setUp(self) -> None:
@@ -29,15 +29,15 @@ class OpenNunomics(unittest.TestCase):
         try:
             # Tunggu beberapa detik untuk memastikan halaman login dimuat
             WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_email))
+                EC.visibility_of_element_located((AppiumBy.ID, field_username))
             )
 
             # Input email/username/no.hp
             input_field = WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_email))
+                EC.visibility_of_element_located((AppiumBy.ID, field_username))
             )
             input_field.clear() # hapus email yang sudah keinput
-            input_field.send_keys(input_email)
+            input_field.send_keys(input_username)
 
             # Input password
             input_field_password = WebDriverWait(self.driver, 5).until(
@@ -51,15 +51,14 @@ class OpenNunomics(unittest.TestCase):
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
             btn_login.click()
-            print("Login dengan email yang mengandung spasi")
-            
+            print("Login dengan akun yang sudah terhapus")
             # Verifikasi pesan error
             try:
                 error_message = WebDriverWait(self.driver, 4).until(
                     EC.presence_of_element_located((AppiumBy.XPATH, toast_message_xpath))
                 )
                 if error_message:
-                    print("Negative Test Case sukses: Pesan error muncul dengan benar (Make sure the account and password are correct!)",)
+                    print("Negative Test Case sukses: Pesan error muncul dengan benar (User not registered yet!)",)
                 else:
                     print("Negative Test Case gagal: Pesan error tidak muncul.")
             except Exception as e:
