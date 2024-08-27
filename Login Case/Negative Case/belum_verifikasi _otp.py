@@ -4,7 +4,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-sys.path.insert(0, r'D:\\ngetesappium\\Daftar Case') #Ambil Open App dari Daftar Case -> halaman daftar
+sys.path.insert(0, r'D:\\ngetesappium\\Daftar Case\\Open App') 
 from open_app import open_app
 
 # Variable ID

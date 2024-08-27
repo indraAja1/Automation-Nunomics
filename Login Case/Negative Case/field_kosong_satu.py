@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import sys
 
 # Impor open_app dari path yang ditentukan
-sys.path.insert(0, r'D:\\ngetesappium\\Login Case')
+sys.path.insert(0, r'D:\\ngetesappium\\Login Case\\Open App')
 from open_app import open_app
 
 # Variable ID/XPATH

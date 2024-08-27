@@ -3,7 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
 # import open app
-sys.path.insert(0, r'D:\\ngetesappium\\Login Case')
+sys.path.insert(0, r'D:\\ngetesappium\\Login Case\\Open App')
 from open_app import open_app
 
 # Variable ID

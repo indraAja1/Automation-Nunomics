@@ -1,6 +1,7 @@
 {
     "python.analysis.extraPaths": [
         "./Login Case",
-        "./Get otp"
+        "./Get otp",
+        "./Daftar Case"
     ]
 }

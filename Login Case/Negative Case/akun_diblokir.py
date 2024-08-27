@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
 # import open app
-sys.path.insert(0, r'D:\\ngetesappium\\Login Case')
+sys.path.insert(0, r'D:\\ngetesappium\\Login Case\\Open App')
 from open_app import open_app
 
 # Variable ID/XPATH
@@ -15,8 +15,8 @@ btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 toast_message_xpath = "//android.widget.Toast[@text='Your account has been blocked, please check your email!']"
 
 # Variable Input
-input_username = "dimasnur"
-input_pass = "Testing1"
+input_username = "Testing3"
+input_pass = "Testing12"
 
 class OpenNunomics(unittest.TestCase):
     def setUp(self) -> None:
@@ -55,7 +55,7 @@ class OpenNunomics(unittest.TestCase):
                     EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
                 )
                 btn_login.click()
-                print("Login dengan akun yang telah di blokir")
+                print("Tap (Masuk Sekarang) Sampai Terblokir Akun")
                 # Verifikasi pesan error
                 try:
                     error_message = WebDriverWait(self.driver, 4).until(
