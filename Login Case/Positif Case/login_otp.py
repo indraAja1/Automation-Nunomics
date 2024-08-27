@@ -77,9 +77,9 @@ class Daftar(unittest.TestCase):
 
             # Tunggu OTP dengan batas waktu yang ditentukan
             print("Menunggu OTP...")
-            otp_code = get_otp_with_timeout(timeout=120, poll_interval=10)
+            otp_code = get_otp_with_timeout(timeout=130, poll_interval=12)
             if otp_code:
-                otp_field = WebDriverWait(self.driver, 10).until(
+                otp_field = WebDriverWait(self.driver, 12).until(
                     EC.visibility_of_element_located((AppiumBy.ID, input_otp))
                 )
                 otp_field.send_keys(otp_code)
@@ -114,6 +114,11 @@ class Daftar(unittest.TestCase):
             
         except Exception as e:
             print(f"Test gagal: {e}")
+
+    def tearDown(self) -> None:
+        if hasattr(self, 'driver') and self.driver:
+            self.driver.quit()
+
 
 if __name__ == "__main__":
     unittest.main()

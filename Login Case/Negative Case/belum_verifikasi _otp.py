@@ -130,9 +130,11 @@ class Daftar(unittest.TestCase):
                 print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
                 print(f"Terjadi kesalahan: {e}")
 
-                
         except Exception as e:
             print(f"Test gagal: {e}")
+    def tearDown(self) -> None:
+        if hasattr(self, 'driver') and self.driver:
+            self.driver.quit()
 
 if __name__ == "__main__":
     

@@ -49,14 +49,17 @@ class OpenNunomics(unittest.TestCase):
             WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((AppiumBy.ID, btn_notif_id))
             )
-            btn_notif = WebDriverWait(self.driver, 10).until(
+            btn_notif = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_notif_id))
             )
             btn_notif.click()
             print("Sukses Login berhasil menggunakan Email domain umum (Yahoo.com)")
-
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
+
+    def tearDown(self) -> None:
+        if hasattr(self, 'driver') and self.driver:
+            self.driver.quit()
 
 if __name__ == "__main__":
     unittest.main()

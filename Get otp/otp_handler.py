@@ -31,18 +31,18 @@ def parse_otp(sms_body):
         return match.group(0)
     return None
 
-def get_otp_with_timeout(timeout=120, poll_interval=10):
+def get_otp_with_timeout(timeout=130, poll_interval=14):
     start_time = time.time()
     last_otp = None
 
     while time.time() - start_time < timeout:
         # Tambahkan penundaan sebelum memulai pengambilan SMS
-        time.sleep(5)
+        time.sleep(6)
         sms_info = get_latest_sms()
         otp = parse_otp(sms_info)
         if otp and otp != last_otp:
             last_otp = otp
-            print(f"New OTP found: {otp}")
+            print(f"New OTP : {otp}")
             return otp
         time.sleep(poll_interval)  # Tunggu beberapa detik sebelum mencoba lagi
 

@@ -91,5 +91,9 @@ class Daftar(unittest.TestCase):
         except Exception as e:
             print(f"Test gagal: {e}")
 
+    def tearDown(self) -> None:
+        if hasattr(self, 'driver') and self.driver:
+            self.driver.quit()
+
 if __name__ == "__main__":
     unittest.main()

@@ -69,5 +69,9 @@ class OpenNunomics(unittest.TestCase):
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
 
+    def tearDown(self) -> None:
+        if hasattr(self, 'driver') and self.driver:
+            self.driver.quit()
+
 if __name__ == "__main__":
     unittest.main()
