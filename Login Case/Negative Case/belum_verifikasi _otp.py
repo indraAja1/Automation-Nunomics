@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 sys.path.insert(0, r'D:\\ngetesappium\\Daftar Case\\Open App') 
-from open_app import open_app
+from open_app_login import open_app
 
 # Variable ID
 field_nama = 'com.nunomics.app.debug:id/etFullName'

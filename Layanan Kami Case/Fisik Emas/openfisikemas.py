@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # Tambahkan jalur ke sys.path
-sys.path.insert(0, r'D:\\ngetesappium\\Layanan Kami Case\\')
+sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from akses_login import OpenNunomics
 
 class TestHomePage(unittest.TestCase):

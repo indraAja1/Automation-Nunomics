@@ -1,12 +1,15 @@
 import unittest
-from open_app import open_app
+
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
-# import otp
+# import otp / import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Get otp')
 from otp_handler import get_otp_with_timeout
+
+sys.path.insert(0, r'D:\\ngetesappium\\Open App')
+from open_app_daftar import open_app
 
 # Variable ID
 field_nama = 'com.nunomics.app.debug:id/etFullName'

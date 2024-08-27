@@ -1,8 +1,11 @@
 import unittest
-from open_app import open_app
+import sys
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+sys.path.insert(0, r'D:\\ngetesappium\\Open App')
+from open_app_daftar import open_app
 
 # Variable ID
 field_nama = 'com.nunomics.app.debug:id/etFullName'
@@ -20,10 +23,10 @@ toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id
 nama_lengkap = "Hayosiapa"
 input_username = "Testinf9"
 input_email = "ngetesappiu2m@gmail.com"
-input_nohp = "082137006458"
+input_nohp = "08234567891011"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
-otp_code = '381039'
+otp_code = '381034'
 
 class Daftar(unittest.TestCase):
     def setUp(self) -> None:
@@ -34,36 +37,36 @@ class Daftar(unittest.TestCase):
     def test_daftar(self):
         try:
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 2).until(
+            WebDriverWait(self.driver, 4).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
             ).send_keys(nama_lengkap)
             
-            WebDriverWait(self.driver, 2).until(
+            WebDriverWait(self.driver, 4).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
             
-            WebDriverWait(self.driver, 2).until(
+            WebDriverWait(self.driver, 4).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
             
-            WebDriverWait(self.driver, 2).until(
+            WebDriverWait(self.driver, 4).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
             
-            WebDriverWait(self.driver, 2).until(
+            WebDriverWait(self.driver, 4).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
             
-            WebDriverWait(self.driver, 2).until(
+            WebDriverWait(self.driver, 4).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
             
-            cb_kebijakan = WebDriverWait(self.driver, 2).until(
+            cb_kebijakan = WebDriverWait(self.driver, 4).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
             
-            btn_daf = WebDriverWait(self.driver, 2).until(
+            btn_daf = WebDriverWait(self.driver, 4).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             btn_daf.click()

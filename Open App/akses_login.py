@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import sys
 # import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Login Case\\Open App')
-from open_app import open_app
+from open_app_login import open_app
 
 # Variable ID
 field_username = 'com.nunomics.app.debug:id/etUsernameEmail'
