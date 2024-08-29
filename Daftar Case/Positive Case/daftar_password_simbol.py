@@ -23,12 +23,12 @@ input_otp = 'com.nunomics.app.debug:id/firstPinView'
 btn_ok = 'com.nunomics.app.debug:id/btnOk'
 
 # Variable input
-nama_lengkap = "ngeyes"
+nama_lengkap = "NgetesPassword"
 input_username = "Testing"
 input_email = "ngetesappium@gmail.com"
 input_nohp = "082137006458"
-input_password = "Testing1"
-input_konfirmasi_password = "Testing1"
+input_password = "Tes3#ting$aja&"
+input_konfirmasi_password = "Tes3#ting$aja&"
 
 class Daftar(unittest.TestCase):
     def setUp(self) -> None:

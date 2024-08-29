@@ -37,59 +37,58 @@ class Daftar(unittest.TestCase):
     def test_daftar(self):
         try:
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 4).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
             ).send_keys(nama_lengkap)
             
-            WebDriverWait(self.driver, 4).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
             
-            WebDriverWait(self.driver, 4).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
             
-            WebDriverWait(self.driver, 4).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
             
-            WebDriverWait(self.driver, 4).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
             
-            WebDriverWait(self.driver, 4).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
             
-            cb_kebijakan = WebDriverWait(self.driver, 4).until(
+            cb_kebijakan = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
             
-            btn_daf = WebDriverWait(self.driver, 4).until(
+            btn_daf = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             btn_daf.click()
             
-            otp_field = WebDriverWait(self.driver, 10).until(
+            otp_field = WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, input_otp))
             )
             otp_field.send_keys(otp_code)
             print(f"OTP '{otp_code}' berhasil dimasukkan")
             
-            try:
-                error_message = WebDriverWait(self.driver, 4).until(
-                    EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
-                )
-                if error_message:
-                    print("Negative Test Case sukses: Pesan error muncul dengan benar (Verif OTP Failed!).")
-                else:
-                    print("Negative Test Case gagal: Pesan error tidak muncul.")
-                    
-            except Exception as e:
-                print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
-                print(f"Terjadi kesalahan: {e}")
+            # Tunggu dan periksa jika ada pesan error
+            error_message = WebDriverWait(self.driver, 7).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
+            )
+            if error_message:
+                toast_text = error_message.text  # Mendapatkan teks dari elemen toast
+                print(f"Negative Test Case sukses: Pesan error muncul dengan benar - '{toast_text}'")
+            else:
+                print("Negative Test Case gagal: Pesan error tidak muncul.")
+        
         except Exception as e:
+            print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
             print(f"Test gagal: {e}")
 
     def tearDown(self) -> None:

@@ -8,9 +8,10 @@ sys.path.insert(0, r'D:\\ngetesappium\\Get otp')
 from otp_handler import get_otp_with_timeout
 
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
-from open_app_daftar import open_app
+from open_app_login import open_app
 
 # Variable ID
+btn_rdc_daftar = 'com.nunomics.app.debug:id/btnDaftar'
 field_nama = 'com.nunomics.app.debug:id/etFullName'
 field_username = 'com.nunomics.app.debug:id/etUsername'
 field_email = 'com.nunomics.app.debug:id/etEmail'
@@ -24,7 +25,7 @@ btn_ok = 'com.nunomics.app.debug:id/btnOk'
 
 # Variable input
 nama_lengkap = "ngeyes"
-input_username = "Testing"
+input_username = "Testing8972"
 input_email = "ngetesappium@gmail.com"
 input_nohp = "082137006458"
 input_password = "Testing1"
@@ -38,28 +39,33 @@ class Daftar(unittest.TestCase):
         
     def test_daftar(self):
         try:
+            # Halaman Login -> Daftar
+            print("Berhasil redirect -> halaman daftar")
+            WebDriverWait(self.driver, 8).until(
+                EC.visibility_of_element_located((AppiumBy.ID, btn_rdc_daftar))
+            ).click()
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
             ).send_keys(nama_lengkap)
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
             

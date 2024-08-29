@@ -20,8 +20,8 @@ XPATH_back = '//android.widget.LinearLayout[@resource-id="com.nunomics.app.debug
 btn_login = 'com.nunomics.app.debug:id/btnLogin'
 field_user_login = 'com.nunomics.app.debug:id/etUsernameEmail'
 btn_login_id = 'com.nunomics.app.debug:id/btnApply'
-toast_message_xpath = '//android.widget.Toast[@text="User not registered yet!"]'
 toast_message_back = '//android.widget.Toast[@text="Anda tidak akan bisa kembali ke halaman OTP lagi jika keluar, tekan tombol kembali sekali lagi untuk keluar"]'
+toast_error = '//android.widget.Toast[@text="User not registered yet!"]'
 
 
 # Variable input
@@ -118,19 +118,17 @@ class Daftar(unittest.TestCase):
             ).click()
             
         # Verifikasi pesan error
-            try:
-                error_message = WebDriverWait(self.driver, 4).until(
-                    EC.presence_of_element_located((AppiumBy.XPATH, toast_message_xpath))
-                )
-                if error_message:
-                    print("Negative Test Case sukses: Pesan error muncul (User not registered yet!)) Karena user tidak menginput OTP",)
-                else:
-                    print("Negative Test Case gagal: Pesan error tidak muncul.")
-            except Exception as e:
-                print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
-                print(f"Terjadi kesalahan: {e}")
-
+            error_message = WebDriverWait(self.driver, 7).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
+            )
+            if error_message:
+                toast_text = error_message.text  # Mendapatkan teks dari elemen toast
+                print(f"Negative Test Case sukses: Pesan error muncul dengan benar - '{toast_text}'")
+            else:
+                print("Negative Test Case gagal: Pesan error tidak muncul.")
+        
         except Exception as e:
+            print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
             print(f"Test gagal: {e}")
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:

@@ -2,6 +2,10 @@ import unittest
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import sys
+
+sys.path.insert(0, r'D:\\ngetesappium\\Open App')
+from open_app_daftar import open_app
 
 # Variable ID
 field_nama = 'com.nunomics.app.debug:id/etFullName'
@@ -31,42 +35,42 @@ class TestDaftarNegative(unittest.TestCase):
     def test_daftar_dengan_data_sudah_digunakan(self):
         try:
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 1).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
             ).send_keys(nama_lengkap)
             
-            WebDriverWait(self.driver, 1).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
             
-            WebDriverWait(self.driver, 1).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
             
-            WebDriverWait(self.driver, 1).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
             
-            WebDriverWait(self.driver, 1).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
             
-            WebDriverWait(self.driver, 1).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
             
-            cb_kebijakan = WebDriverWait(self.driver, 2).until(
+            cb_kebijakan = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
             
-            daftar = WebDriverWait(self.driver, 2).until(
+            daftar = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             daftar.click()
             
             try:
-                error_message = WebDriverWait(self.driver, 4).until(
+                error_message = WebDriverWait(self.driver, 9).until(
                     EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
                 )
                 if error_message:

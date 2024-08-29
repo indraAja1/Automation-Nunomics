@@ -16,7 +16,7 @@ field_pass = 'com.nunomics.app.debug:id/etPassword'
 field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
-toast_error = '//android.widget.Toast[@text="Data user has been added!"]'  # Misalnya, pesan error jika user sudah ada
+toast_error = '//android.widget.Toast[@text="Data user has been added!"]'  
 
 # Variable input
 nama_lengkap = "SiapaHayotesting"
@@ -35,55 +35,54 @@ class TestDaftarNegative(unittest.TestCase):
     def test_daftar_dengan_data_sudah_digunakan(self):
         try:
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 3).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
             ).send_keys(nama_lengkap)
             
-            WebDriverWait(self.driver, 3).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
             
-            WebDriverWait(self.driver, 3).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
             
-            WebDriverWait(self.driver, 3).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
             
-            WebDriverWait(self.driver, 3).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
             
-            WebDriverWait(self.driver, 3).until(
+            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
             
-            cb_kebijakan = WebDriverWait(self.driver, 4).until(
+            cb_kebijakan = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
             
-            daftar = WebDriverWait(self.driver, 4).until(
+            daftar = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             daftar.click()
             
-            try:
-                error_message = WebDriverWait(self.driver, 7).until(
-                    EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
-                )
-                if error_message:
-                    print("Negative Test Case sukses: Pesan error muncul dengan benar (Data user has been added!).")
-                else:
-                    print("Negative Test Case gagal: Pesan error tidak muncul.")
-                    
-            except Exception as e:
-                print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
-                print(f"Terjadi kesalahan: {e}")          
+            # Tunggu dan periksa jika ada pesan error
+            error_message = WebDriverWait(self.driver, 7).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
+            )
+            if error_message:
+                toast_text = error_message.text  # Mendapatkan teks dari elemen toast
+                print(f"Negative Test Case sukses: Pesan error muncul dengan benar - '{toast_text}'")
+            else:
+                print("Negative Test Case gagal: Pesan error tidak muncul.")
+        
         except Exception as e:
-            print(f"Test gagal: {e}")
-
+            print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
+            print(f"Test gagal: {e}")          
+            
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
             self.driver.quit()

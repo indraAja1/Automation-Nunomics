@@ -1,7 +1,9 @@
 import unittest
+import time
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
 import sys
 # import otp / import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Get otp')
@@ -19,16 +21,17 @@ field_pass = 'com.nunomics.app.debug:id/etPassword'
 field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
+resend_otp = 'com.nunomics.app.debug:id/tvResend'
 input_otp = 'com.nunomics.app.debug:id/firstPinView'
 btn_ok = 'com.nunomics.app.debug:id/btnOk'
 
 # Variable input
-nama_lengkap = "ngeyes"
+nama_lengkap = "NgetesPassword"
 input_username = "Testing"
 input_email = "ngetesappium@gmail.com"
-input_nohp = "082137006458"
-input_password = "Testing1"
-input_konfirmasi_password = "Testing1"
+input_nohp = "08123456789"
+input_password = "Tes3#ting$aja&"
+input_konfirmasi_password = "Tes3#ting$aja&"
 
 class Daftar(unittest.TestCase):
     def setUp(self) -> None:
@@ -39,40 +42,45 @@ class Daftar(unittest.TestCase):
     def test_daftar(self):
         try:
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
             ).send_keys(nama_lengkap)
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
             
-            cb_kebijakan = WebDriverWait(self.driver, 8).until(
+            cb_kebijakan = WebDriverWait(self.driver, 6).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
             
-            btn_daf = WebDriverWait(self.driver, 8).until(
+            btn_daf = WebDriverWait(self.driver, 6).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             btn_daf.click()
-
+            
+            print("Menunggu Resend OTP...")            
+            resend = WebDriverWait(self.driver, 35).until(
+                EC.element_to_be_clickable((AppiumBy.ID, resend_otp))
+            )
+            resend.click()
             # Tunggu OTP dengan batas waktu yang ditentukan
             print("Menunggu OTP...")
             otp_code = get_otp_with_timeout(timeout=120, poll_interval=10)
