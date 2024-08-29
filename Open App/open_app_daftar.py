@@ -27,12 +27,12 @@ def open_app():
         print("Driver berhasil diinisialisasi")
         
         # Klik tombol mulai sekarang
-        WebDriverWait(driver, 2).until(
+        WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_mulai))
         ).click()
         
         # Klik tombol daftar
-        WebDriverWait(driver, 2).until(
+        WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
         ).click()
         

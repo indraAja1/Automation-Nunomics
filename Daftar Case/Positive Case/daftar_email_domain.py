@@ -1,5 +1,4 @@
 import unittest
-
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -24,9 +23,9 @@ input_otp = 'com.nunomics.app.debug:id/firstPinView'
 btn_ok = 'com.nunomics.app.debug:id/btnOk'
 
 # Variable input
-nama_lengkap = "SiapaHayotesting"
-input_username = "Testing79"
-input_email = "ngetesappium@gmail.com"
+nama_lengkap = "Yahoo Email"
+input_username = "Emaildomain"
+input_email = "testing.0@yahoo.com"
 input_nohp = "082137006458"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"

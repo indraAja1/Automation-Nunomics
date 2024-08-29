@@ -39,8 +39,7 @@
         - [UiAutomator2 Server Test APK](https://github.com/appium/appium-uiautomator2-server/releases)
         
 2. **Install the APKs on the Device or Emulator**:
-    - Install the APKs using ADB. Run the following commands for each APK:
-        
+    - Install APK using ADB, Connect USB device before run APK. Run the following command for each APK:        
         ```bash
         adb install path/to/appium-uiautomator2-server-debug-androidTest.apk
         adb install path/to/appium-uiautomator2-server-vX.X.X.apk
