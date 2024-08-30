@@ -16,13 +16,13 @@ btn_notif_id = 'com.android.permissioncontroller:id/permission_allow_button'
 input_username = "dimasnur"
 input_pass = "Testing1"
 
-class OpenNunomics:
+class AksesLogin:
     def __init__(self):
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
 
-    def test_loginsucces(self):
+    def test_login_succes(self):
         try:
             # Tunggu dan masukkan username
             input_field = WebDriverWait(self.driver, 15).until(

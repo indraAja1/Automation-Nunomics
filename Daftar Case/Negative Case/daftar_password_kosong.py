@@ -1,14 +1,15 @@
 import unittest
-import sys
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import sys
 
-# Import open app
+# Impor open_app dari path yang ditentukan
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_daftar import open_app
 
-# Variable ID
+# Variable ID/XPATH
+# Variable diambil dari Appium Inspector
 field_nama = 'com.nunomics.app.debug:id/etFullName'
 field_username = 'com.nunomics.app.debug:id/etUsername'
 field_email = 'com.nunomics.app.debug:id/etEmail'
@@ -16,26 +17,25 @@ field_nohp = 'com.nunomics.app.debug:id/etNomorTelepon'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
-btn_daftar = 'com.nunomics.app:id/btnApply'
-toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/message"]'
+btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 
-# Variable input
-nama_lengkap = "SiapaHayotesting"
-input_username = "Testing79"
-input_email = "ngetesappium@gmail.com"
-input_nohp = "0812345678912344532"
-input_password = "Testing1"
+# Variabel input
+nama_lengkap = "Testes"
+input_username = "Testing"
+input_email = "Ngetes@gmail.com"
+input_nohp = "081234567890"
+input_password = ""
 input_konfirmasi_password = "Testing1"
 
-class TestSignupLongPhoneNumber(unittest.TestCase):
+class TestSignupEmptyPassword(unittest.TestCase):
     def setUp(self) -> None:
-        self.driver = open_app()
+        # Buka aplikasi dan inisialisasi driver menggunakan open_app
+        self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_signup_with_long_phone_number(self):
+    def test_signup_with_empty_password(self):
         try:
-            # Isi formulir pendaftaran
             WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
             ).send_keys(nama_lengkap)
@@ -53,38 +53,27 @@ class TestSignupLongPhoneNumber(unittest.TestCase):
             ).send_keys(input_nohp)
             
             WebDriverWait(self.driver, 7).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_pass))
-            ).send_keys(input_password)
-            
-            WebDriverWait(self.driver, 7).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
             
-            # Klik pada checkbox kebijakan
-            cb_kebijakan = WebDriverWait(self.driver, 8).until(
+            WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
+            ).click()
+            # Temukan tombol login
+            button = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ID, btn_login_id))
             )
-            cb_kebijakan.click()
-            
-            # Klik tombol daftar
-            daftar = WebDriverWait(self.driver, 8).until(
-                EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
-            )
-            daftar.click()
-            
-            # Tunggu dan periksa jika ada pesan error
-            error_message = WebDriverWait(self.driver, 7).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
-            )
-            if error_message:
-                toast_text = error_message.text  # Mendapatkan teks dari elemen toast
-                print(f"Negative Test Case sukses: Pesan error muncul dengan benar - '{toast_text}'")
+            # Cek apakah button aktif (enabled)
+            if button.is_enabled():
+                print("Button aktif")
+                button.click()  # Klik tombol login jika aktif
             else:
-                print("Negative Test Case gagal: Pesan error tidak muncul.")
-        
+                print("Button tidak aktif Karena :",)
+            if not input_password:
+                    print("- Field Password Kosong.")
+                    
         except Exception as e:
-            print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
-            print(f"Test gagal: {e}")
+            print(f"Terjadi kesalahan saat login: {e}")
 
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
@@ -92,3 +81,4 @@ class TestSignupLongPhoneNumber(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+    
