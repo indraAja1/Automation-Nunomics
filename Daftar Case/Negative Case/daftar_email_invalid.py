@@ -26,13 +26,13 @@ input_nohp = "089505027088"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
-class TestDaftarNegative(unittest.TestCase):
+class TestSignupInvalidEmail(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app()
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_daftar_dengan_data_sudah_digunakan(self):
+    def test_signup_with_invalid_email(self):
         try:
             # Isi formulir pendaftaran
             WebDriverWait(self.driver, 7).until(

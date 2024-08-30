@@ -18,13 +18,13 @@ btn_notif_id = 'com.android.permissioncontroller:id/permission_allow_button'
 input_email = "usertesting1satu@gmail.com"
 input_pass = "Testing1"
 
-class OpenNunomics(unittest.TestCase):
+class TestLoginValidEmail(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_loginsucces(self):
+    def test_login_with_valid_email(self):
         try:
             WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))

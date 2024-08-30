@@ -18,13 +18,13 @@ btn_notif_id = 'com.android.permissioncontroller:id/permission_allow_button'
 input_username = "Testing3"
 input_pass = "Testing1"
 
-class OpenNunomics(unittest.TestCase):
+class TestLoginNumericUsername(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_loginsucces(self):
+    def test_login_with_numeric_username(self):
         try:
             WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))

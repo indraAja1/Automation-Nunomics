@@ -31,13 +31,13 @@ input_nohp = "082137006458"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
-class Daftar(unittest.TestCase):
+class TestSignupFromLogin(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_daftar(self):
+    def test_signup_from_login(self):
         try:
             # Halaman Login -> Daftar
             print("Berhasil redirect -> halaman daftar")

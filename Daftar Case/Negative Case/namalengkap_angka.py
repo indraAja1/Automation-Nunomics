@@ -3,8 +3,7 @@ import sys
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-# Import open app
+# import open app.debug
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_daftar import open_app
 
@@ -17,23 +16,23 @@ field_pass = 'com.nunomics.app.debug:id/etPassword'
 field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
-toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/message"]'
+toast_error = "//android.widget.Toast[@text='Terjadi kesalahan']" 
 
 # Variable input
-nama_lengkap = "SiapaHayotesting"
+nama_lengkap = "Siapa#$%123"
 input_username = "Testing79"
 input_email = "ngetesappium@gmail.com"
-input_nohp = "+6289505027088"
+input_nohp = "0812345678901"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
-class TestSignupPhoneNumber(unittest.TestCase):
+class TestSignupFullNameWithNumbers(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app()
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_signup_with_country_code(self):
+    def test_signup_with_full_name_containing_numbers(self):
         try:
             # Isi formulir pendaftaran
             WebDriverWait(self.driver, 7).until(
@@ -60,20 +59,18 @@ class TestSignupPhoneNumber(unittest.TestCase):
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
             
-            # Klik pada checkbox kebijakan
             cb_kebijakan = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
             
-            # Klik tombol daftar
             daftar = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             daftar.click()
             
             # Tunggu dan periksa jika ada pesan error
-            error_message = WebDriverWait(self.driver, 7).until(
+            error_message = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
             )
             if error_message:
@@ -84,6 +81,8 @@ class TestSignupPhoneNumber(unittest.TestCase):
         
         except Exception as e:
             print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
+            print(f"Test gagal: {e}")          
+        except Exception as e:
             print(f"Test gagal: {e}")
 
     def tearDown(self) -> None:

@@ -15,17 +15,17 @@ btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 toast_error = "//android.widget.Toast[@text='User not registered yet!']"
 
 # Variabel input
-input_username = "Testing2"
+input_username = "Testing112"
 input_pass = "Testing1"
 
-class OpenNunomics(unittest.TestCase):
+class TestLoginDeletedAccount(unittest.TestCase):
     def setUp(self) -> None:
         # Buka aplikasi dan inisialisasi driver menggunakan open_app
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_loginerror(self):
+    def test_login_with_deleted_account(self):
         try:
             # Tunggu beberapa detik untuk memastikan halaman login dimuat
             WebDriverWait(self.driver, 10).until(

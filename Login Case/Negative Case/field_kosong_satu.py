@@ -18,14 +18,14 @@ btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 input_nohp = "089505027088"
 input_pass = ""
 
-class OpenNunomics(unittest.TestCase):
+class TestLoginSingleFieldEmpty(unittest.TestCase):
     def setUp(self) -> None:
         # Buka aplikasi dan inisialisasi driver menggunakan open_app
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_loginerror(self):
+    def test_login_with_empty_password(self):
         try:
             # Tunggu beberapa detik untuk memastikan halaman login dimuat
             WebDriverWait(self.driver, 10).until(

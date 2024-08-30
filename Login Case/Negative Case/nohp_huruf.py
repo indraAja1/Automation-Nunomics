@@ -18,14 +18,14 @@ toast_error = "//android.widget.Toast[@text='Terjadi kesalahan']"
 input_nohp = "089#0testing" 
 input_pass = "Testing1" 
 
-class OpenNunomics(unittest.TestCase):
+class TestLoginPhoneNumberWithLetters(unittest.TestCase):
     def setUp(self) -> None:
         # Buka aplikasi dan inisialisasi driver menggunakan open_app
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_loginerror(self):
+    def test_login_with_phone_number_containing_letters(self):
         try:
             # Tunggu beberapa detik untuk memastikan halaman login dimuat
             WebDriverWait(self.driver, 10).until(

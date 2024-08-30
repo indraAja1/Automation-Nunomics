@@ -3,8 +3,7 @@ import sys
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-# Import open app
+# import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_daftar import open_app
 
@@ -21,19 +20,19 @@ toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id
 
 # Variable input
 nama_lengkap = "SiapaHayotesting"
-input_username = "Testing79"
-input_email = "ngetesappium@gmail.com"
-input_nohp = "+6289505027088"
+input_username = "Testi#$&"
+input_email = "ngetesappium@bullionecosystem"
+input_nohp = "089505027088"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
-class TestSignupPhoneNumber(unittest.TestCase):
+class TestSignupSpecialUsername(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app()
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_signup_with_country_code(self):
+    def test_signup_with_special_username(self):
         try:
             # Isi formulir pendaftaran
             WebDriverWait(self.driver, 7).until(
@@ -60,13 +59,11 @@ class TestSignupPhoneNumber(unittest.TestCase):
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
             
-            # Klik pada checkbox kebijakan
             cb_kebijakan = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
             
-            # Klik tombol daftar
             daftar = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
@@ -84,6 +81,8 @@ class TestSignupPhoneNumber(unittest.TestCase):
         
         except Exception as e:
             print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
+            print(f"Test gagal: {e}")          
+        except Exception as e:
             print(f"Test gagal: {e}")
 
     def tearDown(self) -> None:

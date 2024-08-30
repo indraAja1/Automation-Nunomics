@@ -33,13 +33,13 @@ input_nohp = "08123456789"
 input_password = "Tes3#ting$aja&"
 input_konfirmasi_password = "Tes3#ting$aja&"
 
-class Daftar(unittest.TestCase):
+class TestSignupResendOTP(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_daftar(self):
+    def test_resend_otp_during_signup(self):
         try:
             # Isi formulir pendaftaran
             WebDriverWait(self.driver, 5).until(

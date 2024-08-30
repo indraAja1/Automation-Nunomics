@@ -16,7 +16,7 @@ field_pass = 'com.nunomics.app.debug:id/etPassword'
 field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
-toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/message"]'  # Misalnya, pesan error jika user sudah ada
+toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/message"]'
 
 # Variable input
 nama_lengkap = "test"
@@ -26,13 +26,13 @@ input_nohp = "082137006478"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
-class TestDaftarNegative(unittest.TestCase):
+class TestSignupShortName(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app()
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_daftar_dengan_data_sudah_digunakan(self):
+    def test_signup_with_short_name(self):
         try:
             # Isi formulir pendaftaran
             WebDriverWait(self.driver, 7).until(

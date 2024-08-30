@@ -18,14 +18,14 @@ toast_error = "//android.widget.Toast[@text='User not registered yet!']"
 input_nohp = "088585923488" #Nomor telepon salah, tetapi password benar
 input_pass = "Testing1" #Nomor telepon salah, tetapi password benar
 
-class OpenNunomics(unittest.TestCase):
+class TestLoginIncorrectPhone(unittest.TestCase):
     def setUp(self) -> None:
         # Buka aplikasi dan inisialisasi driver menggunakan open_app
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_loginerror(self):
+    def test_login_with_wrong_phone_and_correct_password(self):
         try:
             # Tunggu beberapa detik untuk memastikan halaman login dimuat
             WebDriverWait(self.driver, 10).until(

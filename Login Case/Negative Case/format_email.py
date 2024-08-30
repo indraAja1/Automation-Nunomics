@@ -18,14 +18,14 @@ toast_error = "//android.widget.Toast[@text='Terjadi kesalahan']"
 input_email = "usertesting1satu@" #Login dengan format email salah
 input_pass = "Testing1"
 
-class OpenNunomics(unittest.TestCase):
+class TestLoginEmailValidation(unittest.TestCase):
     def setUp(self) -> None:
         # Buka aplikasi dan inisialisasi driver menggunakan open_app
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_loginerror(self):
+    def test_error_message_for_invalid_email(self):
         try:
             # Tunggu beberapa detik untuk memastikan halaman login dimuat
             WebDriverWait(self.driver, 10).until(

@@ -3,7 +3,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
-# import otp
+# import otp / import otp
 sys.path.insert(0, r'D:\\ngetesappium\\Get otp')
 from otp_handler import get_otp_with_timeout
 
@@ -33,12 +33,12 @@ input_nohp = "082137006458"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
-class Daftar(unittest.TestCase):
+class TestSignupToLoginWithOTP(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
-    def test_daftar(self):
+    def test_login_with_otp(self):
         try:
             # Isi formulir pendaftaran
             WebDriverWait(self.driver, 1).until(

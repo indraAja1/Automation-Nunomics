@@ -28,13 +28,13 @@ input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 otp_code = '381034'
 
-class Daftar(unittest.TestCase):
+class TestSignupInvalidOTP(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_daftar(self):
+    def test_signup_with_invalid_otp(self):
         try:
             # Isi formulir pendaftaran
             WebDriverWait(self.driver, 8).until(

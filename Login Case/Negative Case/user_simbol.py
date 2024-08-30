@@ -18,13 +18,13 @@ toast_error = "//android.widget.Toast[@text='Terjadi kesalahan']"
 input_username = "dimasnur*$#&"
 input_pass = "Testing1"
 
-class OpenNunomics(unittest.TestCase):
+class TestLoginUsernameWithSymbols(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_loginsucces(self):
+    def test_login_with_username_containing_symbols(self):
         try:
             WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))

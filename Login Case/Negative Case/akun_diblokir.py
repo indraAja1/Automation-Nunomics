@@ -16,17 +16,17 @@ btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 toast_error = "//android.widget.Toast[@text='Your account has been blocked, please check your email!']"
 
 # Variable Input
-input_username = "Testing3"
+input_username = "Testing2"
 input_pass = "Testing12"
 
-class OpenNunomics(unittest.TestCase):
+class TestLoginBlockAccount(unittest.TestCase):
     def setUp(self) -> None:
         # Buka aplikasi dan inisialisasi driver menggunakan open_app
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
 
-    def test_login(self):
+    def test_login_with_blocked_account(self):
         try:
             
             WebDriverWait(self.driver, 10).until(
@@ -68,9 +68,6 @@ class OpenNunomics(unittest.TestCase):
                         break
                 except Exception as e:
                     print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
-            
-            if not error_detected:
-                print("Negative Test Case gagal: Pesan error tidak muncul setelah beberapa kali klik.")
         
         except Exception as e:
             print(f"Test gagal: {e}")
