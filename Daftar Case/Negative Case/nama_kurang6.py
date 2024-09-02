@@ -71,7 +71,7 @@ class TestSignupShortName(unittest.TestCase):
             
             try:
                 error_message = WebDriverWait(self.driver, 9).until(
-                    EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
+                    EC.visibility_of_element_located((AppiumBy.XPATH, toast_error))
                 )
                 if error_message:
                     print("Negative Test Case sukses: Pesan error muncul dengan benar (Nama lengkap minimal harus 6 karakter).")

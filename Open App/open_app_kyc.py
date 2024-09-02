@@ -13,7 +13,7 @@ btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 btn_notif_id = 'com.android.permissioncontroller:id/permission_allow_button'
 
 # Variable Input
-input_username = "dimasnur"
+input_username = "Testing79"
 input_pass = "Testing1"
 
 class AksesLogin:
@@ -61,4 +61,3 @@ class AksesLogin:
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
             self.driver.quit()
-

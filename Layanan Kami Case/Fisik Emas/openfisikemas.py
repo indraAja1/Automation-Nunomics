@@ -6,13 +6,13 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # Tambahkan jalur ke sys.path
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
-from akses_login import OpenNunomics
+from akses_login import AksesLogin
 
 class TestHomePage(unittest.TestCase):
     def setUp(self) -> None:
         # Inisialisasi instance dari OpenNunomics
-        self.login_test = OpenNunomics()
-        self.login_test.test_loginsucces()  # Lakukan login sebelum melanjutkan
+        self.login_test = AksesLogin()
+        self.login_test.test_login_succes()  # Lakukan login sebelum melanjutkan
 
     def test_access_homepage(self):
         try:

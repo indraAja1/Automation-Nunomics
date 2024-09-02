@@ -73,8 +73,8 @@ class TestSignupShortPhoneNumber(unittest.TestCase):
             daftar.click()
             
             # Tunggu dan periksa jika ada pesan error
-            error_message = WebDriverWait(self.driver, 7).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
+            error_message = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((AppiumBy.XPATH, toast_error))
             )
             if error_message:
                 toast_text = error_message.text  # Mendapatkan teks dari elemen toast

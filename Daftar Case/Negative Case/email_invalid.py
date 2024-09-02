@@ -70,8 +70,8 @@ class TestSignupInvalidEmail(unittest.TestCase):
             daftar.click()
             
             # Tunggu dan periksa jika ada pesan error
-            error_message = WebDriverWait(self.driver, 7).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
+            error_message = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((AppiumBy.XPATH, toast_error))
             )
             if error_message:
                 toast_text = error_message.text  # Mendapatkan teks dari elemen toast
@@ -82,9 +82,6 @@ class TestSignupInvalidEmail(unittest.TestCase):
         except Exception as e:
             print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
             print(f"Test gagal: {e}")          
-        except Exception as e:
-            print(f"Test gagal: {e}")
-
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
             self.driver.quit()

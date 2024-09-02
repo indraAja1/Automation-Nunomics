@@ -54,8 +54,8 @@ class TestLoginEmailValidation(unittest.TestCase):
             print("Login dengan format email salah.")
             
             # Verifikasi pesan error
-            error_message = WebDriverWait(self.driver, 7).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
+            error_message = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((AppiumBy.XPATH, toast_error))
             )
             if error_message:
                 toast_text = error_message.text  # Mendapatkan teks dari elemen toast
