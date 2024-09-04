@@ -12,7 +12,7 @@ from open_app_login import open_app
 field_email = 'com.nunomics.app.debug:id/etUsernameEmail'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 btn_login_id = 'com.nunomics.app.debug:id/btnApply'
-toast_error = "//android.widget.Toast[@text='Make sure the account and password are correct!']" #Liat XPATH
+toast_error = "//android.widget.Toast[@text='Make sure the account and password are correct!']"
 
 # Variabel input
 input_email = "usertesting1satu@gmail.com" #Email benar, tetapi password salah.
@@ -55,7 +55,7 @@ class TestLoginIncorrectPassword(unittest.TestCase):
             
             # Verifikasi pesan error
             error_message = WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.XPATH, toast_error))
+                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
             )
             if error_message:
                 toast_text = error_message.text  # Mendapatkan teks dari elemen toast

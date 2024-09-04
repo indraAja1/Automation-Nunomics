@@ -26,7 +26,7 @@ toast_error = '//android.widget.Toast[@text="User not registered yet!"]'
 
 # Variable input
 nama_lengkap = "Hayosiapa"
-input_username = "Testing9"
+input_username = "Testing98"
 input_email = "ngetesappiu2m@gmail.com"
 input_nohp = "08123456789"
 input_password = "Testing1"
@@ -116,7 +116,7 @@ class TestLoginUnverifiedOTP(unittest.TestCase):
             
         # Verifikasi pesan error
             error_message = WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.XPATH, toast_error))
+                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
             )
             if error_message:
                 toast_text = error_message.text  # Mendapatkan teks dari elemen toast

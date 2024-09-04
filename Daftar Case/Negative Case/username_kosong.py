@@ -73,7 +73,7 @@ class TestSignupEmptyUsername(unittest.TestCase):
                     print("- Field Username Kosong.")
                     
         except Exception as e:
-            print(f"Terjadi kesalahan saat login: {e}")
+            print(f"Terjadi kesalahan saat daftar: {e}")
 
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
@@ -81,4 +81,3 @@ class TestSignupEmptyUsername(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-    

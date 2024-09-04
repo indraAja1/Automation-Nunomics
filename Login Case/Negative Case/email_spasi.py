@@ -9,9 +9,9 @@ from open_app_login import open_app
 
 # Variable ID/XPATH
 # Variable diambil dari Appium Inspector
-field_email = 'com.nunomics.app.debug:id/etUsernameEmail'
-field_pass = 'com.nunomics.app.debug:id/etPassword'
-btn_login_id = 'com.nunomics.app.debug:id/btnApply'
+field_email = 'com.nunomics.app:id/etUsernameEmail'
+field_pass = 'com.nunomics.app:id/etPassword'
+btn_login_id = 'com.nunomics.app:id/btnApply'
 toast_error = "//android.widget.Toast[@text='Terjadi kesalahan']" 
 
 # Variabel input
@@ -55,7 +55,7 @@ class TestLoginInvalidEmailSpaces(unittest.TestCase):
             
             # Verifikasi pesan error
             error_message = WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.XPATH, toast_error))
+                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
             )
             if error_message:
                 toast_text = error_message.text  # Mendapatkan teks dari elemen toast

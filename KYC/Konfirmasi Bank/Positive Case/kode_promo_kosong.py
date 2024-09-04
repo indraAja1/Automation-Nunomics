@@ -46,12 +46,12 @@ class TestComfirmBank(unittest.TestCase):
             )
             if message:
                 toast_text = message.text  # Mendapatkan teks dari elemen toast
-                print(f"Negative Test Case sukses: Pesan error muncul dengan benar - '{toast_text}'")
+                print(f"Pesan valid muncul dengan benar - '{toast_text}'")
             else:
-                print("Negative Test Case gagal: Pesan error tidak muncul.")
+                print("Pesan valid tidak muncul.")
             mulai.click()
         except Exception as e:
-            print(f"Terjadi kesalahan saat mengakses halaman utama: {e}")
+            print(f"Terjadi kesalahan saat mengakses halaman Kode Promo: {e}")
 
     def tearDown(self) -> None:
         self.login_test.tearDown()

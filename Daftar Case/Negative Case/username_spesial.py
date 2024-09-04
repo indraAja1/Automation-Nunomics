@@ -81,8 +81,6 @@ class TestSignupSpecialUsername(unittest.TestCase):
         
         except Exception as e:
             print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
-            print(f"Test gagal: {e}")          
-        except Exception as e:
             print(f"Test gagal: {e}")
 
     def tearDown(self) -> None:

@@ -54,7 +54,7 @@ class TestLoginIncorrectEmail(unittest.TestCase):
             print("Email salah, tetapi password benar.")
             # Verifikasi pesan error
             error_message = WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.XPATH, toast_error))
+                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
             )
             if error_message:
                 toast_text = error_message.text  # Mendapatkan teks dari elemen toast

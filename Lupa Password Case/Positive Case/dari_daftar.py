@@ -47,11 +47,11 @@ class TestForgotPasswordValidEmail(unittest.TestCase):
             EC.element_to_be_clickable((AppiumBy.ID, btn_kirim))
             ).click()
             
-            message_succes = WebDriverWait(self.driver, 7).until(
+            succes_message = WebDriverWait(self.driver, 7).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, pesan_sukses))
             )
-            if message_succes:
-                toast_text_succes = message_succes.text  # Mendapatkan teks dari elemen toast
+            if succes_message:
+                toast_text_succes = succes_message.text  # Mendapatkan teks dari elemen toast
                 print(f"Negative Test Case sukses: Pesan error muncul dengan benar - '{toast_text_succes}'")
             else:
                 print("Negative Test Case gagal: Pesan error tidak muncul.")       

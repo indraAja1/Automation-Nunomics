@@ -73,7 +73,7 @@ class TestSignupEmptyEmail(unittest.TestCase):
                     print("- Field Email Kosong.")
                     
         except Exception as e:
-            print(f"Terjadi kesalahan saat login: {e}")
+            print(f"Terjadi kesalahan saat daftar: {e}")
 
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:

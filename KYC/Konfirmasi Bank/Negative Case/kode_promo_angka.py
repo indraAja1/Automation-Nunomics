@@ -51,7 +51,7 @@ class TestComfirmBank(unittest.TestCase):
                 print("Negative Test Case gagal: Pesan error tidak muncul.")
             mulai.click()
         except Exception as e:
-            print(f"Terjadi kesalahan saat mengakses halaman utama: {e}")
+            print(f"Terjadi kesalahan saat mengakses halaman Kode Promo: {e}")
 
     def tearDown(self) -> None:
         self.login_test.tearDown()

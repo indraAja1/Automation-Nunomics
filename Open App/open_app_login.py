@@ -23,19 +23,16 @@ btn_login = 'com.nunomics.app.debug:id/btnLogin'
 def open_app():
     try:
         driver = webdriver.Remote(appium_server_url, options=options)
-        print("Driver berhasil diinisialisasi")
 
-        # Tunggu beberapa detik untuk memastikan home screen dimuat
-        # ID pada button di ambil dari APPIUM INSPECTOR
+        print("Step 1: Klik tombol 'Mulai Sekarang'")
         WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_next))
         ).click()
         
-        # Klik tombol mulai sekarang
+        print("Step 2: Klik tombol 'Masuk' ")
         WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_login))
         ).click()
-        print("Ke Halaman Masuk")
         return driver  # Kembalikan driver
 
     except Exception as e:

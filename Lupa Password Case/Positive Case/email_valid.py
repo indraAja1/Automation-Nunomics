@@ -17,7 +17,7 @@ pesan_sukses = '//android.widget.TextView[@text="Silakan cek email kamu untuk la
 btn_ok = 'com.nunomics.app.debug:id/btnOk'
 
 # Variabel input
-input_email = "indradimas234@gmail.com"
+input_email = "usertesting1satu@gmail.com"
 
 class TestForgotPasswordValidEmail(unittest.TestCase):
     def setUp(self) -> None:
@@ -28,30 +28,34 @@ class TestForgotPasswordValidEmail(unittest.TestCase):
         
     def test_valid_email(self):
         try:
+            
+            print("Step 3: Klik tombol 'Lupa Password'")            
             WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, lupa_password))
             ).click()
 
-            # Input email
+            print(f"Step 4: Masukkan email '{input_email}' ke dalam field email")
             input_field = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             )
             input_field.send_keys(input_email)
 
-            # klik button kirim
+            print("Step 5: Klik tombol 'Kirim'")
             WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_kirim))
             ).click()
             
-            message_succes = WebDriverWait(self.driver, 7).until(
+            succes_message = WebDriverWait(self.driver, 7).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, pesan_sukses))
             )
-            if message_succes:
-                toast_text_succes = message_succes.text  # Mendapatkan teks dari elemen toast
-                print(f"Negative Test Case sukses: Pesan error muncul dengan benar - '{toast_text_succes}'")
+            if succes_message:
+                toast_text_succes = succes_message.text  # Mendapatkan teks dari elemen toast
+                print(f"Positive Test Case sukses: Pesan berhasil muncul dengan benar - '{toast_text_succes}'")
             else:
-                print("Negative Test Case gagal: Pesan error tidak muncul.")       
+                print("Positive Test Case gagal: Pesan berhasil tidak muncul.")       
                 
+                
+            print("Step 6: Klik tombol 'OK'")
             ok = WebDriverWait(self.driver, 7).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_ok))
             )

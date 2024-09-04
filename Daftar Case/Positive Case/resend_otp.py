@@ -86,7 +86,7 @@ class TestSignupResendOTP(unittest.TestCase):
             otp_code = get_otp_with_timeout(timeout=120, poll_interval=10)
             if otp_code:
                 otp_field = WebDriverWait(self.driver, 10).until(
-                    EC.visibility_of_element_located((AppiumBy.ID, input_otp))
+                    EC.presence_of_element_located((AppiumBy.ID, input_otp))
                 )
                 otp_field.send_keys(otp_code)
                 print(f"OTP '{otp_code}' berhasil dimasukkan")
