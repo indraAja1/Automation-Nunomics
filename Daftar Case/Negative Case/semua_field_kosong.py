@@ -62,7 +62,7 @@ class TestSignupEmpty(unittest.TestCase):
             if not input_nohp:
                 print("- Field Nomor Telepon kosong.")
             if not input_password:
-                print("- Field Password kosong.")
+                print("- field Password kosong.")
             if not input_konfirmasi_password:
                 print("- Field Konfirmasi Password kosong.")
                 

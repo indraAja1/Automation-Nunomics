@@ -60,7 +60,7 @@ class TestLoginEmptyFields(unittest.TestCase):
             if not input_usermailnohp:
                     print("- Field username/email/no.hp kosong.")
             if not input_pass:
-                    print("- Field password kosong.")
+                    print("- field Password kosong.")
                     
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")

@@ -15,7 +15,7 @@ btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 btn_notif_id = 'com.android.permissioncontroller:id/permission_allow_button'
 
 # Variable Input
-input_username = "Testing3"
+input_username = "Testing8"
 input_pass = "Testing1"
 
 class TestLoginNumericUsername(unittest.TestCase):
@@ -26,21 +26,22 @@ class TestLoginNumericUsername(unittest.TestCase):
         
     def test_login_with_numeric_username(self):
         try:
-            WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_username))
-            )
+            
+            print(f"Step 3: Masukkan username numerik '{input_username}' ke dalam field Username/ Email/ No Hp")            
             input_field = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             )
             input_field.clear()
             input_field.send_keys(input_username)
 
+            print(f"Step 4: Masukkan password '{input_username}' ke dalam field Password")            
             input_field_password = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             input_field_password.clear()
             input_field_password.send_keys(input_pass)
 
+            print("Step 5: Klik tombol 'Masuk Sekarang'")
             btn_login = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )

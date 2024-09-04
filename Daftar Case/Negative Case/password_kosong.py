@@ -70,7 +70,7 @@ class TestSignupEmptyPassword(unittest.TestCase):
             else:
                 print("Button tidak aktif Karena :",)
             if not input_password:
-                    print("- Field Password Kosong.")
+                    print("- field Password Kosong.")
                     
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")

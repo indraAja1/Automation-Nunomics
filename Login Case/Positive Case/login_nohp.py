@@ -26,35 +26,35 @@ class TestLoginValidPhone(unittest.TestCase):
         
     def test_login_with_valid_phone(self):
         try:
-            WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
-            )
+            
+            print(f"Step 3: Masukkan No Handpgone '{input_nohp}' ke dalam field Username/ Email/ No Hp")                        
             input_field = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             )
             input_field.clear()
             input_field.send_keys(input_nohp)
 
+            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")            
             input_field_password = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             input_field_password.clear()
             input_field_password.send_keys(input_pass)
 
+            print("Step 5: Klik tombol 'Masuk Sekarang'")
             btn_login = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
             btn_login.click()
             
-            WebDriverWait(self.driver, 10).until(
+            # Perizinan Notifikasi sistem android      
+            WebDriverWait(self.driver, 11).until(
                 EC.visibility_of_element_located((AppiumBy.ID, btn_notif_id))
             )
             btn_notif = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_notif_id))
             )
             btn_notif.click()
-            print("Sukses Login berhasil menggunakan No Handphone")
-
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
     

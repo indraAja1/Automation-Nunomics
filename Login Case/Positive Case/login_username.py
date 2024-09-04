@@ -25,21 +25,22 @@ class TestLoginValidUsername(unittest.TestCase):
 
     def test_login_with_valid_username(self):
         try:
-            # Tunggu dan masukkan username
+
+            print(f"Step 3: Masukkan username '{input_username}' ke dalam field Username/ Email/ No Hp")
             input_field = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             )
             input_field.clear()
             input_field.send_keys(input_username)
 
-            # Tunggu dan masukkan password
+            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")
             input_field_password = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             input_field_password.clear()
             input_field_password.send_keys(input_pass)
 
-            # Tunggu dan klik tombol login
+            print("Step 5: Klik tombol 'Masuk Sekarang'")
             btn_login = WebDriverWait(self.driver, 15).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
