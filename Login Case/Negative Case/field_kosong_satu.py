@@ -27,29 +27,28 @@ class TestLoginSingleFieldEmpty(unittest.TestCase):
         
     def test_login_with_empty_password(self):
         try:
-            # Tunggu beberapa detik untuk memastikan halaman login dimuat
-            WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
-            )
-
+            
             # Input email/username/no.hp
-            input_field = WebDriverWait(self.driver, 5).until(
+            input_field = WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             )
             input_field.clear()  # Hapus email yang sudah diinput
             input_field.send_keys(input_nohp)
+            print(f"Step 3: Masukkan no handphone '{input_nohp}' ke dalam field Username/ Email/ No Hp")
 
             # Input password
-            input_field_password = WebDriverWait(self.driver, 5).until(
+            input_field_password = WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             input_field_password.clear()  # Hapus password yang sudah diinput
             input_field_password.send_keys(input_pass)
+            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")
 
             # Temukan tombol login
             button = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ID, btn_login_id))
             )
+            print("Step 5: Klik tombol 'Masuk Sekarang'")
             # Cek apakah button aktif (enabled)
             if button.is_enabled():
                 print("Button aktif")

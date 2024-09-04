@@ -29,21 +29,21 @@ class TestForgotPasswordEmailSpaces(unittest.TestCase):
     def test_valid_email_with_spaces(self):
         try:
 
-            print("Step 3: Klik tombol 'Lupa Password'")            
             WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, lupa_password))
             ).click()
+            print("Step 3: Klik tombol 'Lupa Password'")            
 
-            print(f"Step 4: Masukkan email dengan spasi '{input_email}' ke dalam field email")
             input_field = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             )
             input_field.send_keys(input_email)
+            print(f"Step 4: Masukkan email dengan spasi '{input_email}' ke dalam field email")
 
-            print("Step 5: Klik tombol 'Kirim'")
             WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_kirim))
             ).click()
+            print("Step 5: Klik tombol 'Kirim'")
             
             error_message = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((AppiumBy.ID, toast_error))

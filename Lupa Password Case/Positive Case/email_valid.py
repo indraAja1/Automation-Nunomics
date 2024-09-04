@@ -29,21 +29,21 @@ class TestForgotPasswordValidEmail(unittest.TestCase):
     def test_valid_email(self):
         try:
             
-            print("Step 3: Klik tombol 'Lupa Password'")            
             WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, lupa_password))
             ).click()
+            print("Step 3: Klik tombol 'Lupa Password'")            
 
-            print(f"Step 4: Masukkan email '{input_email}' ke dalam field email")
             input_field = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             )
             input_field.send_keys(input_email)
+            print(f"Step 4: Masukkan email '{input_email}' ke dalam field email")
 
-            print("Step 5: Klik tombol 'Kirim'")
             WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_kirim))
             ).click()
+            print("Step 5: Klik tombol 'Kirim'")
             
             succes_message = WebDriverWait(self.driver, 7).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, pesan_sukses))
@@ -55,11 +55,11 @@ class TestForgotPasswordValidEmail(unittest.TestCase):
                 print("Positive Test Case gagal: Pesan berhasil tidak muncul.")       
                 
                 
-            print("Step 6: Klik tombol 'OK'")
             ok = WebDriverWait(self.driver, 7).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_ok))
             )
             ok.click()
+            print("Step 6: Klik tombol 'OK'")
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
 

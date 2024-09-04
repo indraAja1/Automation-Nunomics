@@ -10,12 +10,12 @@ from open_app_login import open_app
 
 # Variable ID/XPATH
 # Variable diambil dari Appium Inspector
-field_usermailnohp = 'com.nunomics.app.debug:id/etUsernameEmail'
+field_nohp = 'com.nunomics.app.debug:id/etUsernameEmail'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 
 # Variabel input
-input_usermailnohp = ""
+input_nohp = ""
 input_pass = ""
 
 class TestLoginEmptyFields(unittest.TestCase):
@@ -28,37 +28,35 @@ class TestLoginEmptyFields(unittest.TestCase):
     def test_error_message_for_empty_fields(self):
         try:
             # Tunggu beberapa detik untuk memastikan halaman login dimuat
-            WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_usermailnohp))
-            )
-
             # Input email/username/no.hp
-            input_field = WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_usermailnohp))
+            input_field = WebDriverWait(self.driver, 9).until(
+                EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             )
             input_field.clear()  # Hapus email yang sudah diinput
-            input_field.send_keys(input_usermailnohp)
+            input_field.send_keys(input_nohp)
+            print(f"Step 3: Masukkan no handphone '{input_nohp}' ke dalam field Username/ Email/ No Hp")
 
             # Input password
-            input_field_password = WebDriverWait(self.driver, 5).until(
+            input_field_password = WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             input_field_password.clear()  # Hapus password yang sudah diinput
             input_field_password.send_keys(input_pass)
+            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")
 
             # Temukan tombol login
             button = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ID, btn_login_id))
             )
-
+            print("Step 5: Klik tombol 'Masuk Sekarang'")
             # Cek apakah button aktif (enabled)
             if button.is_enabled():
                 print("Button aktif")
                 button.click()  # Klik tombol login jika aktif
             else:
                 print("Button tidak aktif Karena :")
-            if not input_usermailnohp:
-                    print("- Field username/email/no.hp kosong.")
+            if not input_nohp:
+                    print("- field username/email/no.hp kosong.")
             if not input_pass:
                     print("- field Password kosong.")
                     

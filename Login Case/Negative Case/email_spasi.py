@@ -9,9 +9,9 @@ from open_app_login import open_app
 
 # Variable ID/XPATH
 # Variable diambil dari Appium Inspector
-field_email = 'com.nunomics.app:id/etUsernameEmail'
-field_pass = 'com.nunomics.app:id/etPassword'
-btn_login_id = 'com.nunomics.app:id/btnApply'
+field_email = 'com.nunomics.app.debug:id/etUsernameEmail'
+field_pass = 'com.nunomics.app.debug:id/etPassword'
+btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 toast_error = "//android.widget.Toast[@text='Terjadi kesalahan']" 
 
 # Variabel input
@@ -27,31 +27,28 @@ class TestLoginInvalidEmailSpaces(unittest.TestCase):
         
     def test_error_message_for_email_with_spaces(self):
         try:
-            # Tunggu beberapa detik untuk memastikan halaman login dimuat
-            WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_email))
-            )
-
             # Input email/username/no.hp
             input_field = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             )
-            input_field.clear() # hapus email yang sudah keinput
+            input_field.clear()  # Hapus email/username/no.hp yang sudah diinput
             input_field.send_keys(input_email)
+            print(f"Step 3: Masukkan email '{input_email}' ke dalam field Username/ Email/ No Hp")
 
             # Input password
             input_field_password = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
-            input_field_password.clear()  # hapus password yang sudah keinput
+            input_field_password.clear()  # Hapus password yang sudah diinput
             input_field_password.send_keys(input_pass)
+            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")
 
             # Klik tombol login
             btn_login = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
             btn_login.click()
-            print("Login dengan email yang mengandung spasi")
+            print("Step 5: Klik tombol 'Masuk Sekarang'")
             
             # Verifikasi pesan error
             error_message = WebDriverWait(self.driver, 10).until(

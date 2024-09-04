@@ -24,15 +24,15 @@ def open_app():
     try:
         driver = webdriver.Remote(appium_server_url, options=options)
 
-        print("Step 1: Klik tombol 'Mulai Sekarang'")
         WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_next))
         ).click()
+        print("Step 1: Klik tombol 'Mulai Sekarang'")
         
-        print("Step 2: Klik tombol 'Masuk' ")
         WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_login))
         ).click()
+        print("Step 2: Klik tombol 'Masuk' ")
         return driver  # Kembalikan driver
 
     except Exception as e:

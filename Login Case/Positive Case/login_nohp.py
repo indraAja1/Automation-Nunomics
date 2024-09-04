@@ -15,7 +15,7 @@ btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 btn_notif_id = 'com.android.permissioncontroller:id/permission_allow_button'
 
 # Variable Input
-input_nohp = "089505027088"
+input_nohp = "082137006458"
 input_pass = "Testing1"
 
 class TestLoginValidPhone(unittest.TestCase):
@@ -27,25 +27,25 @@ class TestLoginValidPhone(unittest.TestCase):
     def test_login_with_valid_phone(self):
         try:
             
-            print(f"Step 3: Masukkan No Handpgone '{input_nohp}' ke dalam field Username/ Email/ No Hp")                        
             input_field = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             )
             input_field.clear()
             input_field.send_keys(input_nohp)
+            print(f"Step 3: Masukkan No Handphone '{input_nohp}' ke dalam field Username/ Email/ No Hp")                        
 
-            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")            
             input_field_password = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             input_field_password.clear()
             input_field_password.send_keys(input_pass)
+            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")            
 
-            print("Step 5: Klik tombol 'Masuk Sekarang'")
             btn_login = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
             btn_login.click()
+            print("Step 5: Klik tombol 'Masuk Sekarang'")
             
             # Perizinan Notifikasi sistem android      
             WebDriverWait(self.driver, 11).until(
