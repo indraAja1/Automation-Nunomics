@@ -24,20 +24,17 @@ btn_daftar = 'com.nunomics.app.debug:id/btnDaftar'
 def open_app():
     try:
         driver = webdriver.Remote(appium_server_url, options=options)
-        print("Driver berhasil diinisialisasi")
         
-        # Klik tombol mulai sekarang
+        print("Step 1: Klik tombol 'Mulai Sekarang'")
         WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_mulai))
         ).click()
         
-        # Klik tombol daftar
+        print("Step 2: Klik tombol 'Masuk' ")
         WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
         ).click()
         
-        
-        print("Ke Halaman Daftar")
         return driver  # Kembalikan driver
 
     except Exception as e:
