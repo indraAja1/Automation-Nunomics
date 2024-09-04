@@ -9,7 +9,7 @@ options.platform_name = 'Android'
 options.automation_name = 'uiautomator2' # insall uiautomator2 
 options.udid = 'IFLZFAJJHASOEE95' # cara cek di cmd= adb devices 
 options.device_name = 'POCO X6 Pro 5G'
-options.app_package = 'com.nunomics.app' # cara cek di cmd= adb shell dumpsys window | find "mCurrentFocus"
+options.app_package = 'com.nunomics.app.debug' # cara cek di cmd= adb shell dumpsys window | find "mCurrentFocus"
 options.app_activity = 'com.nunomics.app.ui.SplashActivity' # Acitivity di ambil di splashscreen
 options.no_reset = False # noReset untuk memulai ulang aplikasi
 
@@ -17,8 +17,8 @@ appium_server_url = 'http://127.0.0.1:4723/wd/hub' # Appium Server
 
 # Variable ID/checkbox/btn/XPATH
 # Di ambil dari APPIUM INSPECTOR
-btn_next = 'com.nunomics.app:id/btnNext'
-btn_login = 'com.nunomics.app:id/btnLogin'
+btn_next = 'com.nunomics.app.debug:id/btnNext'
+btn_login = 'com.nunomics.app.debug:id/btnLogin'
 
 def open_app():
     try:

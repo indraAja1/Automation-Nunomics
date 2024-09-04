@@ -34,18 +34,20 @@ class TestLoginUsernameWithSymbols(unittest.TestCase):
             )
             input_field.clear()
             input_field.send_keys(input_username)
+            print(f"Step 3: Masukkan username '{input_username}' ke dalam field Username/ Email/ No Hp")            
 
             input_field_password = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             input_field_password.clear()
             input_field_password.send_keys(input_pass)
+            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")
 
             btn_login = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
             btn_login.click()
-            print("Login dengan username yang mengandung karakter spesial (contoh: @, #,$)")
+            print("Step 5: Klik tombol 'Masuk Sekarang'")
             
             error_message = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
