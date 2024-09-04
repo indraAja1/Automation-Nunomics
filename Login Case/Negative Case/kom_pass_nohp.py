@@ -33,25 +33,27 @@ class TestLoginIncorrectPhone(unittest.TestCase):
             )
 
             # Input email/username/no.hp
-            input_field = WebDriverWait(self.driver, 5).until(
+            input_field = WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             )
             input_field.clear() # hapus email yang sudah keinput
             input_field.send_keys(input_nohp)
+            print(f"Step 3: Masukkan no handphone '{input_nohp}' ke dalam field Username/ Email/ No Hp")            
 
             # Input password
-            input_field_password = WebDriverWait(self.driver, 5).until(
+            input_field_password = WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             input_field_password.clear()  # hapus password yang sudah keinput
             input_field_password.send_keys(input_pass)
+            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")
 
             # Klik tombol login
             btn_login = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
             btn_login.click()
-            print("Nomor handphone salah, tetapi password benar.")
+            print("Step 5: Klik tombol 'Masuk Sekarang'")
             
             # Verifikasi pesan error
             error_message = WebDriverWait(self.driver, 10).until(
