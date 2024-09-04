@@ -54,9 +54,7 @@ class TestLoginValidUsername(unittest.TestCase):
                 EC.element_to_be_clickable((AppiumBy.ID, btn_notif_id))
             )
             btn_notif.click()
-
-            print("Sukses Login berhasil menggunakan Username")
-
+            
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
 
