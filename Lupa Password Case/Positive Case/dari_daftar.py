@@ -18,7 +18,7 @@ pesan_sukses = '//android.widget.TextView[@text="Silakan cek email kamu untuk la
 btn_ok = 'com.nunomics.app.debug:id/btnOk'
 
 # Variabel input
-input_email = "indradimas234@gmail.com"
+input_email = "usertesting1satu@gmail.com"
 
 class TestForgotPasswordValidEmail(unittest.TestCase):
     def setUp(self) -> None:
@@ -29,20 +29,24 @@ class TestForgotPasswordValidEmail(unittest.TestCase):
         
     def test_valid_email(self):
         try:
+            
+            print("Step 3: Klik tombol 'Saya Sudah Punya Akun'")
             WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, halaman_login))
             ).click()
+            
+            print("Step 4: Klik tombol 'Lupa Password'")
             WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, lupa_password))
             ).click()
 
-            # Input email
+            print(f"Step 5: Masukkan email '{input_email}' ke dalam field email")
             input_field = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             )
             input_field.send_keys(input_email)
 
-            # klik button kirim
+            print("Step 6: Klik tombol 'Kirim'")
             WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_kirim))
             ).click()
@@ -56,6 +60,7 @@ class TestForgotPasswordValidEmail(unittest.TestCase):
             else:
                 print("Negative Test Case gagal: Pesan error tidak muncul.")       
                 
+            print("Step 7: Klik tombol 'OK'")
             ok = WebDriverWait(self.driver, 7).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_ok))
             )
