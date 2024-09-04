@@ -27,7 +27,6 @@ class TestForgotPasswordEmailEmpty(unittest.TestCase):
         
     def test_valid_emai_emptyl(self):
         try:
-            
             print("Step 3: Klik tombol 'Lupa Password'")
             WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, lupa_password))
