@@ -27,21 +27,10 @@ class TestLoginEmptyFields(unittest.TestCase):
         
     def test_error_message_for_empty_fields(self):
         try:
-            # Tunggu beberapa detik untuk memastikan halaman login dimuat
-            # Input email/username/no.hp
-            input_field = WebDriverWait(self.driver, 9).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
-            )
-            input_field.clear()  # Hapus email yang sudah diinput
-            input_field.send_keys(input_nohp)
+            # Abaikan input No Handphone
             print(f"Step 3: Tidak ada No Handphone yang dimasukkan '{input_nohp}' ke dalam field Username/ Email/ No Hp")
 
-            # Input password
-            input_field_password = WebDriverWait(self.driver, 9).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_pass))
-            )
-            input_field_password.clear()  # Hapus password yang sudah diinput
-            input_field_password.send_keys(input_pass)
+            # Abaikan input password
             print(f"Step 4: Tidak ada Password '{input_pass}' ke dalam field Password")
 
             # Temukan tombol login

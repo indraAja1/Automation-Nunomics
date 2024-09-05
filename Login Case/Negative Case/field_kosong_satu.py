@@ -36,12 +36,7 @@ class TestLoginSingleFieldEmpty(unittest.TestCase):
             input_field.send_keys(input_nohp)
             print(f"Step 3: Masukkan No Handphone '{input_nohp}' ke dalam field Username/ Email/ No Hp")
 
-            # Input password
-            input_field_password = WebDriverWait(self.driver, 9).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_pass))
-            )
-            input_field_password.clear()  # Hapus password yang sudah diinput
-            input_field_password.send_keys(input_pass)
+            # Abaikan input Password
             print(f"Step 4: Tidak ada Password yang dimasukkan '{input_pass}' ke dalam field Password")
 
             # Temukan tombol login

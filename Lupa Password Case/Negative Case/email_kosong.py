@@ -32,10 +32,7 @@ class TestForgotPasswordEmailEmpty(unittest.TestCase):
             ).click()
             print("Step 3: Klik teks 'Lupa Password'")
 
-            input_field = WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_email))
-            )
-            input_field.send_keys(input_email)
+            # Abaikan input Email
             print(f"Step 4: Tidak ada Email yang dimasukkan '{input_email}' ")
  
             WebDriverWait(self.driver, 10).until(
