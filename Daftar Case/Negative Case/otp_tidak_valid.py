@@ -20,7 +20,7 @@ input_otp = 'com.nunomics.app.debug:id/firstPinView'
 toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/message"]'
 
 # Variable input
-nama_lengkap = "Hayosiapa"
+input_nama = "Hayosiapa"
 input_username = "Testinf9"
 input_email = "ngetesappiu2m@gmail.com"
 input_nohp = "08234567891011"
@@ -37,47 +37,56 @@ class TestSignupInvalidOTP(unittest.TestCase):
     def test_signup_with_invalid_otp(self):
         try:
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 8).until(
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
-            ).send_keys(nama_lengkap)
-            
-            WebDriverWait(self.driver, 8).until(
+            ).send_keys(input_nama)
+            print(f"Step 3: Masukkan Nama Lengkap '{input_nama}' ke dalam field Nama Lengkap")            
+ 
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
+            print(f"Step 4: Masukkan Username '{input_username}' ke dalam field Username")            
+
             
-            WebDriverWait(self.driver, 8).until(
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
-            
-            WebDriverWait(self.driver, 8).until(
+            print(f"Step 5: Masukkan Email  '{input_email}' ke dalam field Email")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
-            
-            WebDriverWait(self.driver, 8).until(
+            print(f"Step 6: Masukkan No Handphone '{input_nohp}' ke dalam field No Handphone")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
-            
-            WebDriverWait(self.driver, 8).until(
+            print(f"Step 7: Masukkan Password '{input_password}' ke dalam field Password")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
-            
+            print(f"Step 8: Masukkan Konfirmasi Password '{input_konfirmasi_password}' ke dalam field Konfirmasi Password")            
+
             cb_kebijakan = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
+            print("Step 9: Klik checkbox 'Kebijakan Privasi'")
             
             btn_daf = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             btn_daf.click()
+            print("Step 10: Klik tombol 'Daftar'")
             
             otp_field = WebDriverWait(self.driver, 8).until(
                 EC.visibility_of_element_located((AppiumBy.ID, input_otp))
             )
             otp_field.send_keys(otp_code)
-            print(f"OTP '{otp_code}' berhasil dimasukkan")
+            print(f"Step 11: Masukan OTP tidak valid '{otp_code}' ke field OTP")
             
-            # Tunggu dan periksa jika ada pesan error
+            # Verifikasi pesan error
             error_message = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((AppiumBy.XPATH, toast_error))
             )

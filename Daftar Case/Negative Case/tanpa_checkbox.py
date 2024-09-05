@@ -17,66 +17,72 @@ field_nohp = 'com.nunomics.app.debug:id/etNomorTelepon'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
-btn_login_id = 'com.nunomics.app.debug:id/btnApply'
+btn_daftar = 'com.nunomics.app.debug:id/btnApply'
 
 # Variabel input
-nama_lengkap = "Testes"
+input_nama = "Testes"
 input_username = "ngetes1212"
 input_email = "Ngetesappium@gmail.com"
 input_nohp = "081234567891"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
-class TestSignupEmptyPassword(unittest.TestCase):
+class TestSignupEmptyCheckbox(unittest.TestCase):
     def setUp(self) -> None:
         # Buka aplikasi dan inisialisasi driver menggunakan open_app
         self.driver = open_app()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_signup_with_empty_password(self):
+    def test_signup_with_unchecked_checkbox(self):
         try:
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
-            ).send_keys(nama_lengkap)
-            
-            WebDriverWait(self.driver, 7).until(
+            ).send_keys(input_nama)
+            print(f"Step 3: Masukkan Nama Lengkap '{input_nama}' ke dalam field Nama Lengkap")            
+ 
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
-            
-            WebDriverWait(self.driver, 7).until(
+            print(f"Step 4: Masukkan Username '{input_username}' ke dalam field Username")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
-            
-            WebDriverWait(self.driver, 7).until(
+            print(f"Step 5: Masukkan Email '{input_email}' ke dalam field Email")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
-            
-            WebDriverWait(self.driver, 7).until(
+            print(f"Step 6: Masukkan No Handphone '{input_nohp}' ke dalam field No Handphone")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
-            
-            WebDriverWait(self.driver, 7).until(
+            print(f"Step 7: Masukkan Password '{input_password}' ke dalam field Password")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
+            print(f"Step 8: Masukkan Konfirmasi Password '{input_konfirmasi_password}' ke dalam field Konfirmasi Password")            
+
+            # Abaikan pengecekan checkbox
+            print("Step 9: Tidak mencentang checkbox 'Kebijakan Privasi'")
             
-            # Temukan dan klik checkbox
-            checkbox_element = WebDriverWait(self.driver, 8).until(
-                EC.element_to_be_clickable((AppiumBy.ID, checkbox))
-            )            
-            # Temukan tombol login
-            button = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ID, btn_login_id))
+            button = WebDriverWait(self.driver, 8).until(
+                EC.presence_of_element_located((AppiumBy.ID, btn_daftar))
             )
-            
+
+                        
             # Cek apakah tombol aktif (enabled)
-            if not checkbox_element.is_selected():
-                print("Checkbox tidak dicentang. Tombol tidak aktif.")
-            elif button.is_enabled():
+            if button.is_enabled():
+                print("Step 10: Tombol Klik 'Daftar'")
                 print("Button aktif")
-                button.click()  # Klik tombol login jika aktif
+                button.click()  # Klik tombol daftar jika aktif
             else:
-                print("Button tidak aktif. Periksa checkbox kebijakan privasi.")
+                print("Step 10: Tombol 'Daftar' tidak akan aktif jika checkbox 'Kebijakan Privasi' tidak dicentang.")
+                print("Button tidak aktif karena checkbox 'Kebijakan Privasi' tidak dicentang.")
+                
         except Exception as e:
             print(f"Terjadi kesalahan saat pendaftaran: {e}")
 

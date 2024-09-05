@@ -19,7 +19,7 @@ btn_daftar = 'com.nunomics.app.debug:id/btnApply'
 toast_error = "//android.widget.Toast[@text='Terjadi kesalahan']" 
 
 # Variable input
-nama_lengkap = "Siapa#$%123"
+input_nama = "Siapa#$%123"
 input_username = "Testing79"
 input_email = "ngetesappium@gmail.com"
 input_nohp = "0812345678901"
@@ -35,39 +35,48 @@ class TestSignupFullNameWithNumbers(unittest.TestCase):
     def test_signup_with_full_name_containing_numbers(self):
         try:
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
-            ).send_keys(nama_lengkap)
-            
-            WebDriverWait(self.driver, 7).until(
+            ).send_keys(input_nama)
+            print(f"Step 3: Masukkan Nama Lengkap dengan input huruf dan angka '{input_nama}' ke dalam field Nama Lengkap")            
+ 
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
+            print(f"Step 4: Masukkan Username '{input_username}' ke dalam field Username")            
+
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
-            
-            WebDriverWait(self.driver, 7).until(
+            print(f"Step 5: Masukkan Email  '{input_email}' ke dalam field Email")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
-            
-            WebDriverWait(self.driver, 7).until(
+            print(f"Step 6: Masukkan No Handphone '{input_nohp}' ke dalam field No Handphone")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
-            
-            WebDriverWait(self.driver, 7).until(
+            print(f"Step 7: Masukkan Password '{input_password}' ke dalam field Password")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
-            
+            print(f"Step 8: Masukkan Konfirmasi Password '{input_konfirmasi_password}' ke dalam field Konfirmasi Password")            
+
             cb_kebijakan = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
+            print("Step 9: Klik checkbox 'Kebijakan Privasi'")
             
-            daftar = WebDriverWait(self.driver, 8).until(
+            btn_daf = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
-            daftar.click()
+            btn_daf.click()
+            print("Step 10: Klik tombol 'Daftar'")
             
             # Tunggu dan periksa jika ada pesan error
             error_message = WebDriverWait(self.driver, 10).until(
