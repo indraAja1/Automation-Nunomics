@@ -32,13 +32,13 @@ class TestForgotPasswordValidEmail(unittest.TestCase):
             WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, lupa_password))
             ).click()
-            print("Step 3: Klik tombol 'Lupa Password'")            
+            print("Step 3: Klik teks 'Lupa Password'")            
 
             input_field = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             )
             input_field.send_keys(input_email)
-            print(f"Step 4: Masukkan email '{input_email}' ke dalam field email")
+            print(f"Step 4: Masukkan Email '{input_email}' ke dalam field email")
 
             WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((AppiumBy.ID, btn_kirim))
