@@ -24,14 +24,15 @@ class AksesLogin:
 
     def test_login_succes(self):
         try:
-            # Tunggu dan masukkan username
+            # Tunggu dan Masukkan Username
             input_field = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             )
             input_field.clear()
             input_field.send_keys(input_username)
+            
 
-            # Tunggu dan masukkan password
+            # Tunggu dan Masukkan Password
             input_field_password = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
