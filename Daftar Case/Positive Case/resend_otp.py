@@ -23,13 +23,14 @@ checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
 resend_otp = 'com.nunomics.app.debug:id/tvResend'
 input_otp = 'com.nunomics.app.debug:id/firstPinView'
+otp_ok = 'com.nunomics.app.debug:id/positiveBtn'
 btn_ok = 'com.nunomics.app.debug:id/btnOk'
 
 # Variable input
-nama_lengkap = "NgetesPassword"
+input_nama = "NgetesPassword"
 input_username = "Testing"
-input_email = "ngetesappium@gmail.com"
-input_nohp = "08123456789"
+input_email = "testing.0@yahoo.com"
+input_nohp = "082137006458"
 input_password = "Tes3#ting$aja&"
 input_konfirmasi_password = "Tes3#ting$aja&"
 
@@ -42,54 +43,69 @@ class TestSignupResendOTP(unittest.TestCase):
     def test_resend_otp_during_signup(self):
         try:
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 5).until(
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
-            ).send_keys(nama_lengkap)
-            
-            WebDriverWait(self.driver, 5).until(
+            ).send_keys(input_nama)
+            print(f"Step 3: Masukkan Nama Lengkap '{input_nama}' ke dalam field Nama Lengkap")            
+ 
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
+            print(f"Step 4: Masukkan Username '{input_username}' ke dalam field Username")            
+
             
-            WebDriverWait(self.driver, 5).until(
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
-            
-            WebDriverWait(self.driver, 5).until(
+            print(f"Step 5: Masukkan Email '{input_email}' ke dalam field Email")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
-            
-            WebDriverWait(self.driver, 5).until(
+            print(f"Step 6: Masukkan No Handphone '{input_nohp}' ke dalam field No Handphone")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
-            
-            WebDriverWait(self.driver, 5).until(
+            print(f"Step 7: Masukkan Password '{input_password}' ke dalam field Password")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
-            
-            cb_kebijakan = WebDriverWait(self.driver, 6).until(
+            print(f"Step 8: Masukkan Konfirmasi Password '{input_konfirmasi_password}' ke dalam field Konfirmasi Password")            
+
+            cb_kebijakan = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
+            print("Step 9: Klik checkbox 'Kebijakan Privasi'")
             
-            btn_daf = WebDriverWait(self.driver, 6).until(
+            btn_daf = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             btn_daf.click()
+            print("Step 10: Klik tombol 'Daftar'")
             
-            print("Menunggu Resend OTP...")            
             resend = WebDriverWait(self.driver, 35).until(
                 EC.element_to_be_clickable((AppiumBy.ID, resend_otp))
             )
+            print("Step 11: Menunggu button 'Resend OTP' dalam 30 detik")            
             resend.click()
+            
+            oke_otp = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((AppiumBy.ID, otp_ok))
+            )
+            oke_otp.click()
+            print("Step 12: Klik button 'OK' pada pesan pop up")            
+            
             # Tunggu OTP dengan batas waktu yang ditentukan
-            print("Menunggu OTP...")
             otp_code = get_otp_with_timeout(timeout=120, poll_interval=10)
             if otp_code:
                 otp_field = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ID, input_otp))
                 )
                 otp_field.send_keys(otp_code)
-                print(f"OTP '{otp_code}' berhasil dimasukkan")
+                print(f"Step 13: Masukan OTP '{otp_code}' ke field OTP")
             else:
                 print("Gagal mendapatkan OTP dari SMS dalam batas waktu yang ditentukan")
                  
@@ -97,6 +113,7 @@ class TestSignupResendOTP(unittest.TestCase):
                 EC.visibility_of_element_located((AppiumBy.ID, btn_ok))
             )
             oke.click()
+            print("Step 14: Klik tombol 'OK'")
 
         except Exception as e:
             print(f"Test gagal: {e}")

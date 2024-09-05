@@ -23,10 +23,10 @@ input_otp = 'com.nunomics.app.debug:id/firstPinView'
 btn_ok = 'com.nunomics.app.debug:id/btnOk'
 
 # Variable input
-nama_lengkap = "ngeyes"
+input_nama = "ngeyes"
 input_username = "Testinglebihdar3char"
 input_email = "ngetesappium@gmail.com"
-input_nohp = "082137006458"
+input_nohp = "08123456789"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
@@ -39,39 +39,49 @@ class TestSignupUsernameLength(unittest.TestCase):
     def test_signup_with_long_username(self):
         try:
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
-            ).send_keys(nama_lengkap)
-            
-            WebDriverWait(self.driver, 7).until(
+            ).send_keys(input_nama)
+            print(f"Step 3: Masukkan Nama Lengkap '{input_nama}' ke dalam field Nama Lengkap")            
+ 
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
+            print(f"Step 4: Masukkan Username lebih dari 3 '{input_username}' ke dalam field Username")            
+
             
-            WebDriverWait(self.driver, 7).until(
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
-            
-            WebDriverWait(self.driver, 7).until(
+            print(f"Step 5: Masukkan Email '{input_email}' ke dalam field Email")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
-            
-            WebDriverWait(self.driver, 7).until(
+            print(f"Step 6: Masukkan No Handphone '{input_nohp}' ke dalam field No Handphone")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
-            
-            WebDriverWait(self.driver, 7).until(
+            print(f"Step 7: Masukkan Password '{input_password}' ke dalam field Password")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
-            
+            print(f"Step 8: Masukkan Konfirmasi Password '{input_konfirmasi_password}' ke dalam field Konfirmasi Password")            
+
             cb_kebijakan = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
+            print("Step 9: Klik checkbox 'Kebijakan Privasi'")
             
             btn_daf = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             btn_daf.click()
+            print("Step 10: Klik tombol 'Daftar'")
+
 
             # Tunggu OTP dengan batas waktu yang ditentukan
             print("Menunggu OTP...")
@@ -81,7 +91,7 @@ class TestSignupUsernameLength(unittest.TestCase):
                     EC.presence_of_element_located((AppiumBy.ID, input_otp))
                 )
                 otp_field.send_keys(otp_code)
-                print(f"OTP '{otp_code}' berhasil dimasukkan")
+                print(f"Step 11: Masukan OTP '{otp_code}' ke field OTP")
             else:
                 print("Gagal mendapatkan OTP dari SMS dalam batas waktu yang ditentukan")
                  
@@ -89,6 +99,7 @@ class TestSignupUsernameLength(unittest.TestCase):
                 EC.visibility_of_element_located((AppiumBy.ID, btn_ok))
             )
             oke.click()
+            print("Step 12: Klik tombol 'OK'")
 
         except Exception as e:
             print(f"Test gagal: {e}")
