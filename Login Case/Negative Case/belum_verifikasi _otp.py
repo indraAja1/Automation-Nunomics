@@ -25,8 +25,8 @@ toast_error = '//android.widget.Toast[@text="User not registered yet!"]'
 
 
 # Variable input
-nama_lengkap = "Hayosiapa"
-input_username = "Testing98"
+input_nama = "Hayosiapa"
+input_username = "Testing988"
 input_email = "ngetesappiu2m@gmail.com"
 input_nohp = "08123456789"
 input_password = "Testing1"
@@ -41,48 +41,59 @@ class TestLoginUnverifiedOTP(unittest.TestCase):
     def test_login_with_unverified_otp(self):
         try:
             # Isi formulir pendaftaran
-            WebDriverWait(self.driver, 2).until(
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
-            ).send_keys(nama_lengkap)
+            ).send_keys(input_nama)
+            print(f"Step 3: Masukkan Nama Lengkap '{input_nama}' ke dalam field Nama Lengkap")            
             
-            WebDriverWait(self.driver, 2).until(
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
-            
-            WebDriverWait(self.driver, 2).until(
+            print(f"Step 4: Masukkan Username '{input_username}' ke dalam field Username")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
-            
-            WebDriverWait(self.driver, 2).until(
+            print(f"Step 5: Masukkan Email '{input_email}' ke dalam field Email")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(input_nohp)
-            
-            WebDriverWait(self.driver, 2).until(
+            print(f"Step 6: Masukkan No Handphone '{input_nohp}' ke dalam field No Handphone")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
-            
-            WebDriverWait(self.driver, 2).until(
+            print(f"Step 7: Masukkan Password '{input_password}' ke dalam field Password")            
+
+            WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
-            
-            cb_kebijakan = WebDriverWait(self.driver, 2).until(
+            print(f"Step 8: Masukkan Konfirmasi Password '{input_konfirmasi_password}' ke dalam field Konfirmasi Password")            
+
+            cb_kebijakan = WebDriverWait(self.driver, 9).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
             )
             cb_kebijakan.click()
+            print("Step 9: Klik checkbox 'Kebijakan Privasi'")
             
-            btn_daf = WebDriverWait(self.driver, 2).until(
+            btn_daf = WebDriverWait(self.driver, 9).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
             btn_daf.click()
+            print("Step 10: Klik tombol 'Daftar'")
+
             #Back
+            # Back
             max_retries = 2
-            for _ in range(max_retries):
+            for attempt in range(max_retries):
                 back = WebDriverWait(self.driver, 14).until(
                     EC.element_to_be_clickable((AppiumBy.XPATH, XPATH_back))
                 )
+                print(f"Step 11: Klik < (Kembali) dan tidak melakukan input OTP ke-{attempt + 1}")
                 back.click()
-            
-            error_message_back = WebDriverWait(self.driver, 7).until(
+                
+            error_message_back = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, toast_message_back))
             )
             if error_message_back:
@@ -95,25 +106,29 @@ class TestLoginUnverifiedOTP(unittest.TestCase):
             login_btn = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login))
             )
-            print("Kembali ke halaman Welcome -> Login")   
             login_btn.click()
+            print("Step 12: Klik tombol 'Maasuk'")
+
             
             username_login = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_user_login))
             )
             username_login.clear()
             username_login.send_keys(input_username)
-            
+            print(f"Step 13: Masukkan Username '{input_username}' ke dalam field Username/ Email/ No Hp")
+
             password_login = WebDriverWait(self.driver, 2).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             password_login.clear()
             password_login.send_keys(input_password)
+            print(f"Step 14: Masukkan Password '{input_password}' ke dalam field Password")
             
             WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             ).click()
-            
+            print("Step 15: Klik tombol 'Masuk Sekarang'")
+
         # Verifikasi pesan error
             error_message = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
