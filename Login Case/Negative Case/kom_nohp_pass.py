@@ -42,7 +42,7 @@ class TestLoginWrongPassword(unittest.TestCase):
             )
             input_field_password.clear()  # hapus password yang sudah keinput
             input_field_password.send_keys(input_pass)
-            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")
+            print(f"Step 4: Masukkan Password '{input_pass}' ke dalam field Password")
 
             # Klik tombol login
             btn_login = WebDriverWait(self.driver, 10).until(

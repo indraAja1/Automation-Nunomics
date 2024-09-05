@@ -33,14 +33,14 @@ class TestLoginBlockAccount(unittest.TestCase):
             )
             input_field.clear() # hapus email yang sudah keinput
             input_field.send_keys(input_username)
-            print(f"Step 3: Masukkan username '{input_username}' ke dalam field Username/ Email/ No Hp")            
+            print(f"Step 3: Masukkan Username '{input_username}' ke dalam field Username/ Email/ No Hp")            
 
             input_field_password = WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             input_field_password.clear()  # hapus password yang sudah keinput
             input_field_password.send_keys(input_pass)
-            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")
+            print(f"Step 4: Masukkan Password '{input_pass}' ke dalam field Password")
 
             # Klik tombol login hingga error muncul atau mencapai batas klik
             max_retries = 10

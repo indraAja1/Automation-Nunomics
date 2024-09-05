@@ -34,7 +34,7 @@ class TestLoginIncorrectEmail(unittest.TestCase):
             )
             input_field.clear() # hapus email yang sudah keinput
             input_field.send_keys(input_email)
-            print(f"Step 3: Masukkan email '{input_email}' ke dalam field Username/ Email/ No Hp")            
+            print(f"Step 3: Masukkan Email '{input_email}' ke dalam field Username/ Email/ No Hp")            
 
             # Input password
             input_field_password = WebDriverWait(self.driver, 9).until(
@@ -42,7 +42,7 @@ class TestLoginIncorrectEmail(unittest.TestCase):
             )
             input_field_password.clear()  # hapus password yang sudah keinput
             input_field_password.send_keys(input_pass)
-            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")
+            print(f"Step 4: Masukkan Password '{input_pass}' ke dalam field Password")
 
             
             # Klik tombol login

@@ -33,7 +33,7 @@ class TestLoginDeletedAccount(unittest.TestCase):
             )
             input_field.clear()  # Hapus email/username/no.hp yang sudah diinput
             input_field.send_keys(input_username)
-            print(f"Step 3: Masukkan username '{input_username}' ke dalam field Username/ Email/ No Hp")
+            print(f"Step 3: Masukkan Username '{input_username}' ke dalam field Username/ Email/ No Hp")
 
             # Input password
             input_field_password = WebDriverWait(self.driver, 9).until(
@@ -41,7 +41,7 @@ class TestLoginDeletedAccount(unittest.TestCase):
             )
             input_field_password.clear()  # Hapus password yang sudah diinput
             input_field_password.send_keys(input_pass)
-            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")
+            print(f"Step 4: Masukkan Password '{input_pass}' ke dalam field Password")
 
             # Klik tombol login
             btn_login = WebDriverWait(self.driver, 10).until(

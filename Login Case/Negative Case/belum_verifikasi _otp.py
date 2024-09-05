@@ -82,8 +82,6 @@ class TestLoginUnverifiedOTP(unittest.TestCase):
             )
             btn_daf.click()
             print("Step 10: Klik tombol 'Daftar'")
-
-            #Back
             # Back
             max_retries = 2
             for attempt in range(max_retries):

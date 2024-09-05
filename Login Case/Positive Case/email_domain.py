@@ -32,14 +32,14 @@ class TestLoginEmailDomain(unittest.TestCase):
             )
             input_field.clear()
             input_field.send_keys(input_email)
-            print(f"Step 3: Masukkan email domain '{input_email}' ke dalam field Username/ Email/ No Hp")            
+            print(f"Step 3: Masukkan Email domain '{input_email}' ke dalam field Username/ Email/ No Hp")            
 
             input_field_password = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             )
             input_field_password.clear()
             input_field_password.send_keys(input_pass)
-            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")            
+            print(f"Step 4: Masukkan Password '{input_pass}' ke dalam field Password")            
 
             btn_login = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))

@@ -39,7 +39,7 @@ class TestLoginValidPhone(unittest.TestCase):
             )
             input_field_password.clear()
             input_field_password.send_keys(input_pass)
-            print(f"Step 4: Masukkan password '{input_pass}' ke dalam field Password")            
+            print(f"Step 4: Masukkan Password '{input_pass}' ke dalam field Password")            
 
             btn_login = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
