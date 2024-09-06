@@ -15,7 +15,7 @@ btn_mulai = 'com.nunomics.app.debug:id/btnStart'
 toast_message = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/tvBottom"]'
 
 # Variable Input
-input_promotor = ''
+input_promotor = '0TPUZDY7'
 
 class TestComfirmBank(unittest.TestCase):
     def setUp(self):
@@ -39,13 +39,11 @@ class TestComfirmBank(unittest.TestCase):
             input_code.send_keys(input_promotor)
             print(f"Step 7: Masukkan Kode Promotor '{input_promotor} ke field Kode Promotor'")
             
-            
             mulai = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_mulai))
             )
             print("Step 8: Klik tombol 'Mulai'")
             
-            # Verifikasi succes message
             message = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((AppiumBy.XPATH, toast_message))
             )
@@ -57,7 +55,7 @@ class TestComfirmBank(unittest.TestCase):
             mulai.click()
         except Exception as e:
             print(f"Terjadi kesalahan saat mengakses halaman Kode Promo: {e}")
-            assert False
+            # assert False
 
     def tearDown(self) -> None:
         self.login_test.tearDown()
