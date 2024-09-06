@@ -1,10 +1,5 @@
 {
     "python.analysis.extraPaths": [
-        "./Login Case",
-        "./Get otp",
-        "./Daftar Case",
-        "./Open App",
-        "./KYC/Konfirmasi Bank/S&K",
-        "./KYC/Konfirmasi Bank/S&K"
+        "./Open App"
     ]
 }

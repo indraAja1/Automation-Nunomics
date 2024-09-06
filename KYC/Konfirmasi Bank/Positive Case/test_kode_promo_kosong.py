@@ -31,16 +31,21 @@ class TestComfirmBank(unittest.TestCase):
                 EC.element_to_be_clickable((AppiumBy.ID, btn_kyc))
             )
             kyc.click()
+            print("Step 6: Klik tombol 'Lakukan Registrasi KYC'")
             
             input_code = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_promotor))
             )
             input_code.send_keys(input_promotor)
+            print(f"Step 7: Masukkan Kode Promotor '{input_promotor} ke field Kode Promotor'")
             
             
             mulai = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_mulai))
             )
+            print("Step 8: Klik tombol 'Mulai'")
+            
+            # Verifikasi succes message
             message = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((AppiumBy.XPATH, toast_message))
             )
@@ -52,6 +57,7 @@ class TestComfirmBank(unittest.TestCase):
             mulai.click()
         except Exception as e:
             print(f"Terjadi kesalahan saat mengakses halaman Kode Promo: {e}")
+            assert False
 
     def tearDown(self) -> None:
         self.login_test.tearDown()

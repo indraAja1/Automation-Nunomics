@@ -30,7 +30,7 @@ class AksesLogin:
             )
             input_field.clear()
             input_field.send_keys(input_username)
-            
+            print(f"Step 3: Masukkan Username '{input_username}' ke dalam field Username")
 
             # Tunggu dan Masukkan Password
             input_field_password = WebDriverWait(self.driver, 15).until(
@@ -38,14 +38,16 @@ class AksesLogin:
             )
             input_field_password.clear()
             input_field_password.send_keys(input_pass)
+            print(f"Step 4: Masukkan Password '{input_pass}' ke dalam field Password")
 
             # Tunggu dan klik tombol login
             btn_login = WebDriverWait(self.driver, 15).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_login_id))
             )
             btn_login.click()
+            print("Step 5: Klik tombol 'Masuk Sekarang'")
 
-            # Tunggu dan klik tombol perizinan
+            # Tunggu dan klik tombol perizinan notifikasi
             WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located((AppiumBy.ID, btn_notif_id))
             )
@@ -53,9 +55,6 @@ class AksesLogin:
                 EC.element_to_be_clickable((AppiumBy.ID, btn_notif_id))
             )
             btn_notif.click()
-
-            print("Sukses Login berhasil menggunakan Username")
-
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
 
