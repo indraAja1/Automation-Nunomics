@@ -118,9 +118,9 @@ class TestComfirmBank(unittest.TestCase):
             )
             if toast_agrement3:
                 toast_text3 = toast_agrement3.text
-                print(f"Step 12: Klik chechbox atau teks: '{toast_text3}' ")
+                print(f"Step 14: Klik chechbox atau teks: '{toast_text3}' ")
             else:
-                print(f"Step 12: Tesk pada '{toast_text3}' tidak muncul")
+                print(f"Step 14: Tesk pada '{toast_text3}' tidak muncul")
             toast_agrement3.click()
             
         except Exception as e:
