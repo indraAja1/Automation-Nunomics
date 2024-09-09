@@ -3,6 +3,10 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
+
+# Case : Nomor handphone benar, tetapi password salah.
+
+
 # import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_login import open_app
@@ -15,8 +19,8 @@ btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 toast_error = "//android.widget.Toast[@text='Make sure the account and password are correct!']" #Liat XPATH
 
 # Variabel input
-input_nohp = "089505027088" #Nomor telepon benar, tetapi password salah
-input_pass = "Pass Fail" #Nomor telepon benar, tetapi password salah
+input_nohp = "089505027088" #Nomor handphone benar, tetapi password salah
+input_pass = "Pass Fail" #Nomor handphone benar, tetapi password salah
 
 class TestLoginWrongPassword(unittest.TestCase):
     def setUp(self) -> None:

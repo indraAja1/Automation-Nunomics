@@ -4,6 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
 
+# Case : Semua field kosong
+
 # Impor open_app dari path yang ditentukan
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_login import open_app

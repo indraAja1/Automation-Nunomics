@@ -3,6 +3,9 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
+
+# Case : Login dengan username < 3 char
+
 # import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_login import open_app

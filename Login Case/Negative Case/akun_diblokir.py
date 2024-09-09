@@ -4,6 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
 
+# Case : Login dengan akun yang telah di blokir
+
 # Import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_login import open_app
