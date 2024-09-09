@@ -4,6 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
 
+# Case : Lupa password dengan email tidak sesuai format (@BOLOBOLO.com)
+
 # Impor open_app dari path yang ditentukan
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_login import open_app
@@ -15,7 +17,7 @@ btn_kirim = 'com.nunomics.app.debug:id/btnApply'
 toast_error = 'com.nunomics.app.debug:id/message'
 
 # Variabel input
-input_email = "indradimas234@ bullionecosystem.com"
+input_email = "indradimas234@BOLOBOLO.com"
 
 class TestForgotPasswordInvalidEmail(unittest.TestCase):
     def setUp(self) -> None:
@@ -55,7 +57,6 @@ class TestForgotPasswordInvalidEmail(unittest.TestCase):
             print(f"Terjadi kesalahan saat login: {e}")
 
     def tearDown(self) -> None:
-        print("Menutup aplikasi")
         if hasattr(self, 'driver') and self.driver:
             self.driver.quit()
 
