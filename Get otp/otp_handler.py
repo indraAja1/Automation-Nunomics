@@ -2,6 +2,8 @@ import time
 import subprocess
 import re
 
+# Case : Bahan import untuk get OTP
+
 def get_latest_sms():
     result = subprocess.run(
         ["adb", "shell", "content", "query", "--uri", "content://sms/inbox", "--projection", "body,address,date"],

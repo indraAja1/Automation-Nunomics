@@ -4,6 +4,9 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+# Case : Open Aplikasi NUnomics ke halaman Masuk
+
+
 options = UiAutomator2Options()
 options.platform_name = 'Android'
 options.automation_name = 'uiautomator2' # insall uiautomator2 
