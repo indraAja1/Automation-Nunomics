@@ -85,7 +85,7 @@ class TestSignupUsernameLength(unittest.TestCase):
 
             # Tunggu OTP dengan batas waktu yang ditentukan
             print("Menunggu OTP...")
-            otp_code = get_otp_with_timeout(timeout=120, poll_interval=10)
+            otp_code = get_otp_with_timeout(timeout=170, poll_interval=18)
             if otp_code:
                 otp_field = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ID, input_otp))
