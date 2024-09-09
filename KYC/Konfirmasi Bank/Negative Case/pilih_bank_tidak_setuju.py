@@ -20,11 +20,9 @@ toast_message = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:
 rped = 'com.nunomics.app.debug:id/tvRped'
 tutup_rped = 'com.nunomics.app.debug:id/btnClose'
 agi = 'com.nunomics.app.debug:id/rbAgi'
-agreement1 = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/tvCheckbox1"]'
-agreement2 = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/tvCheckbox2"]'
-agreement3 = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/tvCheckbox3"]'
-setuju = 'com.nunomics.app.debug:id/btnAgree'
 lanjut = 'com.nunomics.app.debug:id/btnNext'
+toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/message"]'
+ok = 'com.nunomics.app.debug:id/positiveBtn'
 
 
 # Variable Input
@@ -46,7 +44,6 @@ class TestComfirmBank(unittest.TestCase):
             kyc.click()
             print("Step 6: Klik tombol 'Lakukan Registrasi KYC'")
 
-            
             input_code = WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_promotor))
             )
@@ -86,59 +83,31 @@ class TestComfirmBank(unittest.TestCase):
             ).click()
             print("Step 11: Klik chechbox 'Artha Graha International'")
             
-            # Centang agreement 1
-            toast_agrement1 =WebDriverWait(self.driver, 8).until(
-                EC.element_to_be_clickable((AppiumBy.XPATH, agreement1))   
-            )
-            if toast_agrement1:
-                toast_text1 = toast_agrement1.text
-                print(f"Step 12: Klik chechbox atau teks: '{toast_text1}' ")
-            else:
-                print(f"Tesk '{toast_text1}' tidak muncul")
-            toast_agrement1.click()
+            # Abaikan Centang agreement 1
             
-            # Scroll ke bawah
-            perform_swipe(self.driver, 581, 2599, 623, 403)
+            # Abaikan Centang agreement 2
             
-            WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((AppiumBy.ID, setuju))   
-            ).click()
-            print("Step 13: Klik tombol 'Setuju'")
-            # Centang agreement 2
-            toast_agrement2 = WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((AppiumBy.XPATH, agreement2))   
-            )
-            if toast_agrement2:
-                toast_text2 = toast_agrement2.text
-                print(f"Step 14: Klik chechbox atau teks: '{toast_text2}' ")
-            else:
-                print(f"Step 14: Tesk pada '{toast_text2}' tidak muncul")
-            toast_agrement2.click()
-                        
-            # Scroll ke bawah lagi
-            perform_swipe(self.driver, 581, 2599, 623, 403) # Scroll pertama
-            perform_swipe(self.driver, 581, 2599, 1023, 703) # Scroll kedua
-            
-            WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((AppiumBy.ID, setuju))   
-            ).click()
-            print("Step 15: Klik tombol 'Setuju'")
-            
-            # Centang agreement 3
-            toast_agrement3 = WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((AppiumBy.XPATH, agreement3))   
-            )
-            if toast_agrement3:
-                toast_text3 = toast_agrement3.text
-                print(f"Step 16: Klik chechbox atau teks: '{toast_text3}' ")
-            else:
-                print(f"Step 16: Tesk pada '{toast_text3}' tidak muncul")
-            toast_agrement3.click()
+            # Abaikan Centang agreement 3
             
             WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, lanjut))   
             ).click()
-            print("Step 17: Klik tombol 'Lanjut' Setelah pernyataan semua tercentang")
+            print("Step 12: Klik tombol 'Lanjut' Tanpa tercentang semua pernyataan")
+            
+            error_message = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
+            )
+            if error_message:
+                toast_text = error_message.text  # Mendapatkan teks dari elemen toast
+                print(f"Negative Test Case sukses: Pesan error muncul dengan benar - '{toast_text}'")
+            else:
+                print("Negative Test Case gagal: Pesan error tidak muncul.")
+
+            WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((AppiumBy.ID, ok))   
+            ).click()
+            print("Step 13: Klik tombol 'OK' ")
+        
             
         except Exception as e:
             print(f"Terjadi kesalahan saat mengakses halaman Pilih Bank: {e}")

@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
-        "./Open App"
+        "./Open App",
+        "./Get otp"
     ]
 }

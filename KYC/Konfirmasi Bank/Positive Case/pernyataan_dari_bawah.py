@@ -30,7 +30,7 @@ lanjut = 'com.nunomics.app.debug:id/btnNext'
 # Variable Input
 input_promotor = '0TPUZDY7'
 
-class TestComfirmBank(unittest.TestCase):
+class TestSelectAndConfirmBank(unittest.TestCase):
     def setUp(self):
         # Inisialisasi instance dari OpenNunomics
         self.login_test = AksesLogin()
@@ -38,7 +38,7 @@ class TestComfirmBank(unittest.TestCase):
         # Ambil driver dari login_test
         self.driver = self.login_test.driver
             
-    def test_corfirm_bank(self):
+    def test_select_bank_and_confirm(self):
         try:
             kyc = WebDriverWait(self.driver, 9).until(
                 EC.element_to_be_clickable((AppiumBy.ID, btn_kyc))
@@ -86,33 +86,26 @@ class TestComfirmBank(unittest.TestCase):
             ).click()
             print("Step 11: Klik chechbox 'Artha Graha International'")
             
-            # Centang agreement 1
-            toast_agrement1 =WebDriverWait(self.driver, 8).until(
-                EC.element_to_be_clickable((AppiumBy.XPATH, agreement1))   
+            # Centang agreement 3
+            toast_agrement3 = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((AppiumBy.XPATH, agreement3))   
             )
-            if toast_agrement1:
-                toast_text1 = toast_agrement1.text
-                print(f"Step 12: Klik chechbox atau teks: '{toast_text1}' ")
+            if toast_agrement3:
+                toast_text3 = toast_agrement3.text
+                print(f"Step 12: Klik chechbox atau teks: '{toast_text3}' ")
             else:
-                print(f"Tesk '{toast_text1}' tidak muncul")
-            toast_agrement1.click()
+                print(f"Step 12: Tesk pada '{toast_text3}' tidak muncul")
+            toast_agrement3.click()
             
-            # Scroll ke bawah
-            perform_swipe(self.driver, 581, 2599, 623, 403)
-            
-            WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((AppiumBy.ID, setuju))   
-            ).click()
-            print("Step 13: Klik tombol 'Setuju'")
             # Centang agreement 2
             toast_agrement2 = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.XPATH, agreement2))   
             )
             if toast_agrement2:
                 toast_text2 = toast_agrement2.text
-                print(f"Step 14: Klik chechbox atau teks: '{toast_text2}' ")
+                print(f"Step 13: Klik chechbox atau teks: '{toast_text2}' ")
             else:
-                print(f"Step 14: Tesk pada '{toast_text2}' tidak muncul")
+                print(f"Step 13: Tesk pada '{toast_text2}' tidak muncul")
             toast_agrement2.click()
                         
             # Scroll ke bawah lagi
@@ -122,18 +115,26 @@ class TestComfirmBank(unittest.TestCase):
             WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, setuju))   
             ).click()
-            print("Step 15: Klik tombol 'Setuju'")
+            print("Step 14: Klik tombol 'Setuju'")
             
-            # Centang agreement 3
-            toast_agrement3 = WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((AppiumBy.XPATH, agreement3))   
+            # Centang agreement 1
+            toast_agrement1 =WebDriverWait(self.driver, 8).until(
+                EC.element_to_be_clickable((AppiumBy.XPATH, agreement1))   
             )
-            if toast_agrement3:
-                toast_text3 = toast_agrement3.text
-                print(f"Step 16: Klik chechbox atau teks: '{toast_text3}' ")
+            if toast_agrement1:
+                toast_text1 = toast_agrement1.text
+                print(f"Step 15: Klik chechbox atau teks: '{toast_text1}' ")
             else:
-                print(f"Step 16: Tesk pada '{toast_text3}' tidak muncul")
-            toast_agrement3.click()
+                print(f"Step 15: teks '{toast_text1}' tidak muncul")
+            toast_agrement1.click()
+            
+            # Scroll ke bawah
+            perform_swipe(self.driver, 581, 2599, 623, 403)
+            
+            WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((AppiumBy.ID, setuju))   
+            ).click()
+            print("Step 16: Klik tombol 'Setuju'")
             
             WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((AppiumBy.ID, lanjut))   
