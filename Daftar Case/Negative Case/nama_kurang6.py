@@ -4,6 +4,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
 
+# Case : Daftar dengan nama lengkap < 6 char
+
+# import open app 
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_daftar import open_app
 

@@ -3,6 +3,9 @@ import sys
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+# Case : Dafttar dengan data yang sudah terpakai
+
 # import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_daftar import open_app

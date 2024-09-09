@@ -1,10 +1,11 @@
 import unittest
-import time
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 import sys
+
+# Case : Daftar dengam otp resend
+
 # import otp / import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Get otp')
 from otp_handler import get_otp_with_timeout
