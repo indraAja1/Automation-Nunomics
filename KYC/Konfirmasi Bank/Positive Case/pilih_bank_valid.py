@@ -4,6 +4,8 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
   
+# Case : Pembukaan Rekeningt(KYC) dengan Konfirmasi Bank (Setujui Pernyataan)
+  
 # Import touch actions untuk swipe
 sys.path.insert(0, r'D:\\ngetesappium\\KYC\\Konfirmasi Bank\\S&K')
 from touch import perform_swipe # type: ignore
@@ -94,7 +96,7 @@ class TestComfirmBank(unittest.TestCase):
                 toast_text1 = toast_agrement1.text
                 print(f"Step 12: Klik chechbox atau teks: '{toast_text1}' ")
             else:
-                print(f"Tesk '{toast_text1}' tidak muncul")
+                print(f"Step 12: Teks pada '{toast_text1}' tidak muncul")
             toast_agrement1.click()
             
             # Scroll ke bawah
@@ -142,7 +144,7 @@ class TestComfirmBank(unittest.TestCase):
             
         except Exception as e:
             print(f"Terjadi kesalahan saat mengakses halaman Pilih Bank: {e}")
-            # assert False
+            
 
     def tearDown(self) -> None:
         self.login_test.tearDown()

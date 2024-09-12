@@ -4,6 +4,8 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+# Case : Pembukaan Rekening (KYC) dengan Kode Promo hanya mengandung angka (12345678)
+
 # Tambahkan jalur ke sys.path
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_kyc import AksesLogin

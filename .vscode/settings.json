@@ -1,6 +1,7 @@
 {
     "python.analysis.extraPaths": [
         "./Open App",
-        "./Get otp"
+        "./Get otp",
+        "./KYC/Konfirmasi Bank/S&K"
     ]
 }

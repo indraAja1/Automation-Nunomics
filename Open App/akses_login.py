@@ -16,7 +16,7 @@ btn_login_id = 'com.nunomics.app.debug:id/btnApply'
 btn_notif_id = 'com.android.permissioncontroller:id/permission_allow_button'
 
 # Variable Input
-input_username = "dimasnur"
+input_username = "saskiamaulansyah"
 input_pass = "Testing1"
 
 class AksesLogin:
