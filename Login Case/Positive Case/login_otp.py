@@ -11,7 +11,8 @@ sys.path.insert(0, r'D:\\ngetesappium\\Get otp')
 from otp_handler import get_otp_with_timeout
 
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
-from open_app_daftar import open_app
+from open_app_daftar_pin import open_app_pin, options
+
 
 # Variable ID
 field_nama = 'com.nunomics.app.debug:id/etFullName'
@@ -39,7 +40,7 @@ input_konfirmasi_password = "Testing1"
 
 class TestSignupToLoginWithOTP(unittest.TestCase):
     def setUp(self) -> None:
-        self.driver = open_app()  # Pastikan open_app() mengembalikan driver
+        self.driver = open_app_pin()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
     def test_login_with_otp(self):
@@ -147,6 +148,7 @@ class TestSignupToLoginWithOTP(unittest.TestCase):
 
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
+            self.driver.terminate_app(options.app_package)
             self.driver.quit()
 
 

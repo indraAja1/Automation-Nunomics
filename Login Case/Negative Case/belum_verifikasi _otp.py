@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # import open app daftar
 sys.path.insert(0, r'D:\\ngetesappium\\Open App') 
-from open_app_daftar import open_app
+from open_app_daftar_pin import open_app_pin, options
 
 # Variable ID
 field_nama = 'com.nunomics.app.debug:id/etFullName'
@@ -37,7 +37,7 @@ input_konfirmasi_password = "Testing1"
 
 class TestLoginUnverifiedOTP(unittest.TestCase):
     def setUp(self) -> None:
-        self.driver = open_app()  # Pastikan open_app() mengembalikan driver
+        self.driver = open_app_pin()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
@@ -143,8 +143,10 @@ class TestLoginUnverifiedOTP(unittest.TestCase):
         except Exception as e:
             print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
             print(f"Test gagal: {e}")
+            
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
+            self.driver.terminate_app(options.app_package)
             self.driver.quit()
 
 if __name__ == "__main__":

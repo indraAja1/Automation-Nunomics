@@ -2,16 +2,14 @@ import unittest
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import random
 import sys
 
 # Case : Daftar dengan username menggunakan angka (contoh: 1-10)
 
-# import otp / import open app
-sys.path.insert(0, r'D:\\ngetesappium\\Get otp')
-from otp_handler import get_otp_with_timeout
-
+# Import Open App
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
-from open_app_daftar import open_app
+from open_app_daftar_pin import open_app_pin, options
 
 # Variable ID
 field_nama = 'com.nunomics.app.debug:id/etFullName'
@@ -22,20 +20,20 @@ field_pass = 'com.nunomics.app.debug:id/etPassword'
 field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
-input_otp = 'com.nunomics.app.debug:id/firstPinView'
+otp = 'com.nunomics.app.debug:id/firstPinView'
 btn_ok = 'com.nunomics.app.debug:id/btnOk'
 
 # Variable input
-input_nama = "ngeyes"
-input_username = "Testing8972"
-input_email = "ngetesappium@gmail.com"
-input_nohp = "082137006458"
+input_nama = "ngetes username number"
+input_username = "Testing8q7hu2"
+input_email = "ngetes.709@gmail.com"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
+input_otp = "111111"
 
 class TestSignupUsernameNumeric(unittest.TestCase):
     def setUp(self) -> None:
-        self.driver = open_app()  # Pastikan open_app() mengembalikan driver
+        self.driver = open_app_pin()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
@@ -58,10 +56,16 @@ class TestSignupUsernameNumeric(unittest.TestCase):
             ).send_keys(input_email)
             print(f"Step 5: Masukkan Email '{input_email}' ke dalam field Email")            
 
+            # Membuat nomor handphone random
+            start = '08'
+            rest_of_number = ''.join([str(random.randint(0, 9)) for _ in range(11)])
+            random_phone = start + rest_of_number
+
+            # Masukkan nomor handphone random ke dalam field No Handphone
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
-            ).send_keys(input_nohp)
-            print(f"Step 6: Masukkan No Handphone '{input_nohp}' ke dalam field No Handphone")            
+            ).send_keys(random_phone)
+            print(f"Step 6: Masukkan No Handphone '{random_phone}' ke dalam field No Handphone")
 
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
@@ -84,20 +88,17 @@ class TestSignupUsernameNumeric(unittest.TestCase):
             )
             btn_daf.click()
             print("Step 10: Klik tombol 'Daftar'")
+            
+            # Membuat nomor handphone random
+            start = '08'
+            rest_of_number = ''.join([str(random.randint(0, 9)) for _ in range(11)])
+            random_phone = start + rest_of_number
 
-
-            # Tunggu OTP dengan batas waktu yang ditentukan
-            print("Menunggu OTP...")
-            otp_code = get_otp_with_timeout(timeout=170, poll_interval=18)
-            if otp_code:
-                otp_field = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((AppiumBy.ID, input_otp))
-                )
-                otp_field.send_keys(otp_code)
-                print(f"Step 11: Masukan OTP '{otp_code}' ke field OTP")
-            else:
-                print("Gagal mendapatkan OTP dari SMS dalam batas waktu yang ditentukan")
-                 
+            WebDriverWait(self.driver, 9).until(
+                EC.visibility_of_element_located((AppiumBy.ID, otp))
+            ).send_keys(input_otp)
+            print(f"Step 11: Masukan OTP '{input_otp}' ke field OTP")
+            
             oke = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((AppiumBy.ID, btn_ok))
             )
@@ -106,9 +107,12 @@ class TestSignupUsernameNumeric(unittest.TestCase):
 
         except Exception as e:
             print(f"Test gagal: {e}")
+            assert False
+            
 
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
+            self.driver.terminate_app(options.app_package)
             self.driver.quit()
 
 if __name__ == "__main__":

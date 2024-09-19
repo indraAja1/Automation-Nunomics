@@ -83,8 +83,8 @@ class TestHomePage(unittest.TestCase):
             pnl_f_a_value_home = parse_rupiah_to_float(pnl_f_a_value_str)
 
             # Cetak nilai yang diambil dari elemen
-            print(f"Nilai PnL (Amount) dari UI Home : Rp{pnl_f_a_value_home:,.2f}")
-            print(f"Nilai PnL (%) dari UI Home: {pnl_f_p_value_home:.2f}%")
+            print(f"\033[93mNilai PnL (Amount) dari UI Home : Rp{pnl_f_a_value_home:,.2f}")
+            print(f"Nilai PnL (%) dari UI Home: {pnl_f_p_value_home:.2f}%\033[0m")
             
 
             # Klik pada halaman emas
@@ -116,8 +116,8 @@ class TestHomePage(unittest.TestCase):
             pnl_f_a_value = parse_rupiah_to_float(pnl_f_a_value_str)
 
             # Cetak nilai yang diambil dari elemen
-            print(f"Nilai PnL (Amount) dari UI: Rp{pnl_f_a_value:,.2f}")
-            print(f"Nilai PnL (%) dari UI: {pnl_f_p_value:.2f}%")
+            print(f"\033[93mNilai PnL (Amount) dari UI Saldo RPED: Rp{pnl_f_a_value:,.2f}")
+            print(f"Nilai PnL (%) dari UI Saldo RPED: {pnl_f_p_value:.2f}%\033[0m")
 
             # Klik pada kontrak pertama
             WebDriverWait(self.driver, 9).until(

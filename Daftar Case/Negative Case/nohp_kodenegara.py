@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # Import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
-from open_app_daftar import open_app
+from open_app_daftar_pin import open_app_pin, options
 
 # Variable ID
 field_nama = 'com.nunomics.app.debug:id/etFullName'
@@ -25,13 +25,13 @@ toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id
 input_nama = "SiapaHayotesting"
 input_username = "Testing79"
 input_email = "ngetesappium@gmail.com"
-input_nohp = "+6289505027088"
+input_nohp = "+6289505027818"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
 class TestSignupPhoneNumber(unittest.TestCase):
     def setUp(self) -> None:
-        self.driver = open_app()
+        self.driver = open_app_pin()
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
@@ -96,7 +96,9 @@ class TestSignupPhoneNumber(unittest.TestCase):
 
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
+            self.driver.terminate_app(options.app_package)
             self.driver.quit()
+
 
 if __name__ == "__main__":
     unittest.main()
