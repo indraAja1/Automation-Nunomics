@@ -55,11 +55,10 @@ class TestUnregisteredEmail(unittest.TestCase):
                 print(f"Negative Test Case sukses: Pesan error muncul dengan benar - '{toast_text}'")
             else:
                 print("Negative Test Case gagal: Pesan error tidak muncul.")
+                
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
             
-
-
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
             self.driver.terminate_app(options.app_package)

@@ -1,15 +1,14 @@
 import unittest
+import sys
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import sys
 
 # Case : Login dari Halaman daftar
 
 # import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_daftar_pin import open_app_pin, options
- 
 
 # Variable ID
 # Di ambil dari APPIUM INSPECTOR

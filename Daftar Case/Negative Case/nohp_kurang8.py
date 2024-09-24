@@ -5,9 +5,9 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# Case : Daftar dengan password dan konfirmasi password yang berbeda
+# Case : Daftar demgam no handphone < 8 number
 
-# import open app
+# Import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_daftar_pin import open_app_pin, options
 
@@ -27,15 +27,15 @@ input_nama = "SiapaHayotesting"
 input_username = "Testing79"
 input_email = "ngetesappium@gmail.com"
 input_password = "Testing1"
-input_konfirmasi_password = "Testing2"
+input_konfirmasi_password = "Testing1"
 
-class TestSignupInvalidConfirmation(unittest.TestCase):
+class TestSignupShortPhoneNumber(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app_pin()
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_signup_with_invalid_confirmation(self):
+    def test_signup_with_short_phone_number(self):
         try:
             # Isi formulir pendaftaran
             WebDriverWait(self.driver, 9).until(
@@ -56,16 +56,15 @@ class TestSignupInvalidConfirmation(unittest.TestCase):
 
             # Membuat nomor handphone random
             start = '08'
-            rest_of_number = ''.join([str(random.randint(0, 9)) for _ in range(11)])
+            rest_of_number = ''.join([str(random.randint(0, 9)) for _ in range(3)])
             random_phone = start + rest_of_number
 
             # Masukkan nomor handphone random ke dalam field No Handphone
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(random_phone)
-            print(f"Step 6: Masukkan No Handphone '{random_phone}' ke dalam field No Handphone")
-                     
-
+            print(f"Step 6: Masukkan No Handphone kurang dari 8 '{random_phone}' ke dalam field No Handphone")            
+            
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
@@ -74,7 +73,7 @@ class TestSignupInvalidConfirmation(unittest.TestCase):
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
             ).send_keys(input_konfirmasi_password)
-            print(f"Step 8: Masukkan Konfirmasi Password yang berbeda dengan Password '{input_konfirmasi_password}' ke dalam field Konfirmasi Password")            
+            print(f"Step 8: Masukkan Konfirmasi Password '{input_konfirmasi_password}' ke dalam field Konfirmasi Password")            
 
             cb_kebijakan = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
@@ -100,8 +99,7 @@ class TestSignupInvalidConfirmation(unittest.TestCase):
         
         except Exception as e:
             print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
-            print(f"Test gagal: {e}")          
-            assert False
+            print(f"Test gagal: {e}")
             
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:

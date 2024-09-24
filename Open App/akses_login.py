@@ -52,18 +52,6 @@ class AksesLogin:
             btn_login.click()
             print("Step 5: Klik tombol 'Masuk Sekarang'")
 
-
-            # Verifikasi izin notifikasi 
-            WebDriverWait(self.driver, 15).until(
-                EC.visibility_of_element_located((AppiumBy.ID, btn_notif_id))
-            )
-            btn_notif = WebDriverWait(self.driver, 15).until(
-                EC.element_to_be_clickable((AppiumBy.ID, btn_notif_id))
-            )
-            btn_notif.click()
-
-            print("Sukses Login berhasil menggunakan Username")
-
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
 

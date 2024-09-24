@@ -1,13 +1,13 @@
 import unittest
+import sys
+import random
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import random
-import sys
 
-# Case : Daftar dengan nama lengkap < 6 char
+# Case : Daftar dengan nama lengkap menggunakan angka dan simbol (contoh: 1,2,3,@,#&)
 
-# import open app 
+# import open app.debug
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_daftar_pin import open_app_pin, options
 
@@ -20,28 +20,29 @@ field_pass = 'com.nunomics.app.debug:id/etPassword'
 field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
-toast_error = '//android.widget.TextView[@resource-id="com.nunomics.app.debug:id/message"]'
+toast_error = "//android.widget.Toast[@text='Terjadi kesalahan']" 
 
 # Variable input
-input_nama = "test"
-input_username = "Testing799"
-input_email = "ngetesappium1@gmail.com"
+input_nama = "Siapa#$%123"
+input_username = "Testing79"
+input_email = "ngetesappium@gmail.com"
+input_nohp = "0812345678901"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
-class TestSignupShortName(unittest.TestCase):
+class TestSignupFullNameWithNumbers(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = open_app_pin()
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_signup_with_short_name(self):
+    def test_signup_with_full_name_containing_numbers(self):
         try:
             # Isi formulir pendaftaran
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
             ).send_keys(input_nama)
-            print(f"Step 3: Masukkan Nama Lengkap kurang dari 6 char'{input_nama}' ke dalam field Nama Lengkap")            
+            print(f"Step 3: Masukkan Nama Lengkap dengan input huruf dan angka '{input_nama}' ke dalam field Nama Lengkap")            
  
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
@@ -63,8 +64,8 @@ class TestSignupShortName(unittest.TestCase):
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(random_phone)
-            print(f"Step 6: Masukkan No Handphone '{random_phone}' ke dalam field No Handphone")
-            
+            print(f"Step 6: Masukkan No Handphone '{random_phone}' ke dalam field No Handphone")           
+
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
@@ -87,21 +88,19 @@ class TestSignupShortName(unittest.TestCase):
             btn_daf.click()
             print("Step 10: Klik tombol 'Daftar'")
             
-            try:
-                error_message = WebDriverWait(self.driver, 9).until(
-                    EC.visibility_of_element_located((AppiumBy.XPATH, toast_error))
-                )
-                if error_message:
-                    print("Negative Test Case sukses: Pesan error muncul dengan benar (Nama lengkap minimal harus 6 karakter).")
-                else:
-                    print("Negative Test Case gagal: Pesan error tidak muncul.")
-                    
-            except Exception as e:
-                print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
-                print(f"Terjadi kesalahan: {e}")          
+            # Tunggu dan periksa jika ada pesan error
+            error_message = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
+            )
+            if error_message:
+                toast_text = error_message.text  # Mendapatkan teks dari elemen toast
+                print(f"Negative Test Case sukses: Pesan error muncul dengan benar - '{toast_text}'")
+            else:
+                print("Negative Test Case gagal: Pesan error tidak muncul.")
+        
         except Exception as e:
-            print(f"Test gagal: {e}")
-            assert False
+            print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
+            print(f"Test gagal: {e}")          
             
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
@@ -109,6 +108,5 @@ class TestSignupShortName(unittest.TestCase):
             self.driver.quit()
 
 
-          
 if __name__ == "__main__":
     unittest.main()

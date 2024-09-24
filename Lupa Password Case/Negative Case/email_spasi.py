@@ -57,8 +57,6 @@ class TestForgotPasswordEmailSpaces(unittest.TestCase):
                 print("Negative Test Case gagal: Pesan error tidak muncul.")
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
-            
-
 
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:

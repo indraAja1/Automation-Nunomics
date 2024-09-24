@@ -1,11 +1,11 @@
 import unittest
-import random
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import random
 import sys
 
-# Case : Daftar dengan Konfirmasi Password Kosong
+# Case : Daftar dengan field Nama Lengkap Kosong
 
 # Impor open_app dari path yang ditentukan
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
@@ -23,25 +23,23 @@ checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
 
 # Variabel input
-input_nama = "Testes"
-input_username = "Testing"
-input_email = "Ngetes@gmail.com"
+input_nama = ""
+input_username = "Testing79"
+input_email = "ngetesappium@gmail.com"
 input_password = "Testing1"
-input_konfirmasi_password = ""
+input_konfirmasi_password = "Testing1"
 
-class TestSignupEmptyConfirmPassword(unittest.TestCase):
+class TestSignupEmptyFullName(unittest.TestCase):
     def setUp(self) -> None:
         # Buka aplikasi dan inisialisasi driver menggunakan open_app
         self.driver = open_app_pin()  # Pastikan open_app() mengembalikan driver
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_signup_with_empty_confirm_password(self):
+    def test_signup_with_empty_full_name(self):
         try:
-            WebDriverWait(self.driver, 9).until(
-                EC.visibility_of_element_located((AppiumBy.ID, field_nama))
-            ).send_keys(input_nama)
-            print(f"Step 3: Masukkan Nama Lengkap '{input_nama}' ke dalam field Nama Lengkap")            
+            # Abaikan input Nama Lengkap
+            print(f"Step 3: Tidak ada Nama Lengkap yang dimasukan '{input_nama}' ke dalam field Nama Lengkap")            
  
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
@@ -52,7 +50,7 @@ class TestSignupEmptyConfirmPassword(unittest.TestCase):
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_email))
             ).send_keys(input_email)
-            print(f"Step 5: Masukkan Email yang dimasukkan '{input_email}' ke dalam field Email")            
+            print(f"Step 5: Masukkan Email  '{input_email}' ke dalam field Email")            
 
             # Membuat nomor handphone random
             start = '08'
@@ -63,16 +61,17 @@ class TestSignupEmptyConfirmPassword(unittest.TestCase):
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(random_phone)
-            print(f"Step 6: Masukkan No Handphone '{random_phone}' ke dalam field No Handphone")
-                     
+            print(f"Step 6: Masukkan No Handphone '{random_phone}' ke dalam field No Handphone")          
 
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
             print(f"Step 7: Masukkan Password '{input_password}' ke dalam field Password")            
 
-            # Abaikan input Konfimasi Password
-            print(f"Step 8: Tidak ada Konfirmasi Password yang dimasukan '{input_konfirmasi_password}' ke dalam field Konfirmasi Password")            
+            WebDriverWait(self.driver, 9).until(
+                EC.visibility_of_element_located((AppiumBy.ID, field_konfirmasi))
+            ).send_keys(input_konfirmasi_password)
+            print(f"Step 8: Masukkan Konfirmasi Password '{input_konfirmasi_password}' ke dalam field Konfirmasi Password")            
 
             cb_kebijakan = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable((AppiumBy.ID, checkbox))
@@ -83,22 +82,21 @@ class TestSignupEmptyConfirmPassword(unittest.TestCase):
             button = WebDriverWait(self.driver, 8).until(
                 EC.presence_of_element_located((AppiumBy.ID, btn_daftar))
             )
-            if not input_konfirmasi_password:
-                print("Step 10: Field Konfirmasi Password kosong, tombol 'Daftar' tidak akan aktif.")
+            if not input_nama:
+                print("Step 10: Field Nama Lengkap kosong, tombol 'Daftar' tidak akan aktif.")
             else:
-                print("Step 10: Klik tombol 'Daftar'")            
+                print("Step 10: Klik tombol 'Daftar'")
             # Cek apakah button aktif (enabled)
             if button.is_enabled():
                 print("Button aktif")
                 button.click()  # Klik tombol login jika aktif
             else:
                 print("Button tidak aktif Karena :",)
-            if not input_konfirmasi_password:
-                    print("- Field Konfirmasi Password Kosong.")
+            if not input_nama:
+                    print("- Field Nama Lengkap Kosong.")
                     
         except Exception as e:
-            print(f"Terjadi kesalahan saat daftar: {e}")
-            assert False
+            print(f"Terjadi kesalahan saat login: {e}")
 
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:

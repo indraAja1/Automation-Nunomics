@@ -14,7 +14,6 @@ from open_app_login_pin import open_app_pin, options
 field_username = 'com.nunomics.app.debug:id/etUsernameEmail'
 field_pass = 'com.nunomics.app.debug:id/etPassword'
 btn_login_id = 'com.nunomics.app.debug:id/btnApply'
-btn_notif_id = 'com.android.permissioncontroller:id/permission_allow_button'
 
 # Variable Input
 input_username = "Testing79"
@@ -51,14 +50,6 @@ class AksesLogin:
             btn_login.click()
             print("Step 5: Klik tombol 'Masuk Sekarang'")
 
-            # Tunggu dan klik tombol perizinan notifikasi
-            WebDriverWait(self.driver, 15).until(
-                EC.visibility_of_element_located((AppiumBy.ID, btn_notif_id))
-            )
-            btn_notif = WebDriverWait(self.driver, 15).until(
-                EC.element_to_be_clickable((AppiumBy.ID, btn_notif_id))
-            )
-            btn_notif.click()
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
 

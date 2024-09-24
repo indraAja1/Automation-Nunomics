@@ -64,7 +64,6 @@ class TestForgotPasswordValidEmail(unittest.TestCase):
             print("Step 6: Klik tombol 'OK'")
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
-            
 
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:

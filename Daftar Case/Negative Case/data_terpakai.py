@@ -1,18 +1,17 @@
 import unittest
+import sys
 import random
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import sys
 
-# Case : Daftar dengan Email Kosong
+# Case : Dafttar dengan data yang sudah terpakai
 
-# Impor open_app dari path yang ditentukan
+# import open app
 sys.path.insert(0, r'D:\\ngetesappium\\Open App')
 from open_app_daftar_pin import open_app_pin, options
 
-# Variable ID/XPATH
-# Variable diambil dari Appium Inspector
+# Variable ID
 field_nama = 'com.nunomics.app.debug:id/etFullName'
 field_username = 'com.nunomics.app.debug:id/etUsername'
 field_email = 'com.nunomics.app.debug:id/etEmail'
@@ -21,23 +20,24 @@ field_pass = 'com.nunomics.app.debug:id/etPassword'
 field_konfirmasi = 'com.nunomics.app.debug:id/etConfirmPassword'
 checkbox = 'com.nunomics.app.debug:id/cbAgreement2'
 btn_daftar = 'com.nunomics.app.debug:id/btnApply'
+toast_error = '//android.widget.Toast[@text="Data user has been added!"]'  
 
-# Variabel input
-input_nama = "Testes"
-input_username = "Testing"
-input_email = ""  # Ganti menjadi "" jika ingin menguji field email kosong
+# Variable input
+input_nama = "SiapaHayotesting"
+input_username = "Testing9"
+input_email = "ngetesappium@gmail.com"
 input_password = "Testing1"
 input_konfirmasi_password = "Testing1"
 
-class TestSignupEmptyEmail(unittest.TestCase):
+class TestSignupAccountUsed(unittest.TestCase):
     def setUp(self) -> None:
-        # Buka aplikasi dan inisialisasi driver menggunakan open_app
-        self.driver = open_app_pin()  # Pastikan open_app() mengembalikan driver
+        self.driver = open_app_pin()
         if not self.driver:
             raise Exception("Driver tidak berhasil diinisialisasi dari open_app()")
         
-    def test_signup_with_empty_email(self):
+    def test_signup_with_used_account(self):
         try:
+            # Isi formulir pendaftaran
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nama))
             ).send_keys(input_nama)
@@ -47,8 +47,10 @@ class TestSignupEmptyEmail(unittest.TestCase):
                 EC.visibility_of_element_located((AppiumBy.ID, field_username))
             ).send_keys(input_username)
             print(f"Step 4: Masukkan Username '{input_username}' ke dalam field Username")            
-
-            # Abaikan input Email
+            
+            WebDriverWait(self.driver, 9).until(
+                EC.visibility_of_element_located((AppiumBy.ID, field_email))
+            ).send_keys(input_email)
             print(f"Step 5: Masukkan Email '{input_email}' ke dalam field Email")            
 
             # Membuat nomor handphone random
@@ -60,8 +62,8 @@ class TestSignupEmptyEmail(unittest.TestCase):
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_nohp))
             ).send_keys(random_phone)
-            print(f"Step 6: Masukkan No Handphone '{random_phone}' ke dalam field No Handphone")     
-
+            print(f"Step 6: Masukkan No Handphone '{random_phone}' ke dalam field No Handphone")
+            
             WebDriverWait(self.driver, 9).until(
                 EC.visibility_of_element_located((AppiumBy.ID, field_pass))
             ).send_keys(input_password)
@@ -78,34 +80,31 @@ class TestSignupEmptyEmail(unittest.TestCase):
             cb_kebijakan.click()
             print("Step 9: Klik checkbox 'Kebijakan Privasi'")
             
-            button = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ID, btn_daftar))
+            btn_daf = WebDriverWait(self.driver, 8).until(
+                EC.element_to_be_clickable((AppiumBy.ID, btn_daftar))
             )
-            
-            # Cek apakah email kosong dan print Step 10 dengan pesan yang sesuai
-            if not input_email:
-                print("Step 10: Field Email kosong, tombol 'Daftar' tidak akan aktif.")
-            else:
-                print("Step 10: Klik tombol 'Daftar'")
-            
-            # Cek apakah button aktif (enabled)
-            if button.is_enabled():
-                print("Button aktif")
-                button.click()  # Klik tombol daftar jika aktif
-            else:
-                print("Button tidak aktif karena:")
-                if not input_email:
-                    print("- Field Email kosong.")
-    
-        except Exception as e:
-            print(f"Terjadi kesalahan saat daftar: {e}")
-            assert False
+            btn_daf.click()
+            print("Step 10: Klik tombol 'Daftar'")
 
+            
+            # Verifikasi error message
+            error_message = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, toast_error))
+            )
+            if error_message:
+                toast_text = error_message.text  # Mendapatkan teks dari elemen toast
+                print(f"Negative Test Case sukses: Pesan error muncul dengan benar - '{toast_text}'")
+            else:
+                print("Negative Test Case gagal: Pesan error tidak muncul.")
+        
+        except Exception as e:
+            print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
+            print(f"Test gagal: {e}")
+            
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
             self.driver.terminate_app(options.app_package)
             self.driver.quit()
-            assert False
 
 
 if __name__ == "__main__":

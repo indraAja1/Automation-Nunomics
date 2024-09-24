@@ -19,7 +19,7 @@ pesan_sukses = '//android.widget.TextView[@text="Silakan cek email kamu untuk la
 btn_ok = 'com.nunomics.app.debug:id/btnOk'
 
 # Variabel input
-input_email = "testing.0@yahoo.com"
+input_email = "testing.05@yahoo.com"
 
 class TestForgotPasswordValidEmailDomain(unittest.TestCase):
     def setUp(self) -> None:
@@ -63,8 +63,6 @@ class TestForgotPasswordValidEmailDomain(unittest.TestCase):
             print("Step 6: Klik tombol 'OK'")           
         except Exception as e:
             print(f"Terjadi kesalahan saat login: {e}")
-            
-
 
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:

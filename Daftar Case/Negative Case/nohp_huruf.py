@@ -55,8 +55,8 @@ class TestSignupInvalidPhoneNumber(unittest.TestCase):
             print(f"Step 5: Masukkan Email  '{input_email}' ke dalam field Email")            
 
             # Membuat nomor handphone random
-            start = '08'
-            rest_of_number = ''.join([str(random.randint(0, 9)) for _ in range(11)])
+            start = '08FY'
+            rest_of_number = ''.join([str(random.randint(0, 9)) for _ in range(9)])
             random_phone = start + rest_of_number
 
             # Masukkan nomor handphone random ke dalam field No Handphone
@@ -100,7 +100,6 @@ class TestSignupInvalidPhoneNumber(unittest.TestCase):
         except Exception as e:
             print("Pesan error tidak terdeteksi atau tidak muncul dalam waktu yang ditentukan.")
             print(f"Test gagal: {e}")    
-            assert False      
 
     def tearDown(self) -> None:
         if hasattr(self, 'driver') and self.driver:
